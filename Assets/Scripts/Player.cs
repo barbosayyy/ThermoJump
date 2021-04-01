@@ -6,11 +6,16 @@ public class Player : MonoBehaviour
 {
     public float playerSpeed;
     public float jumpForce;
+    public float strafeVelocity;
     public GameObject gndCheck;
     public bool isGrounded;
     public float jumpTimer = 3f;
     public  bool canJump;
     public float groundDistance = 0.01f;
+    public float hMovement;
+    public float vMovement;
+    public float mAxisX;
+    public float mAxisY;
 
     private Rigidbody Rb;
     void Start()
@@ -18,13 +23,20 @@ public class Player : MonoBehaviour
         Rb = gameObject.GetComponent<Rigidbody>();
     }
 
+    void Update()
+    {
+        hMovement = Input.GetAxisRaw("Horizontal") * playerSpeed;
+        vMovement = Input.GetAxisRaw("Vertical") * playerSpeed;
+        mAxisX = Input.GetAxis("Mouse X");
+        mAxisY = Input.GetAxis("Mouse Y");
+    }
+
     void FixedUpdate()
     {
-        float hMovement = Input.GetAxisRaw("Horizontal") * playerSpeed;
-        float vMovement = Input.GetAxisRaw("Vertical") * playerSpeed;
 
         Vector3 movePos = transform.right * hMovement + transform.forward * vMovement;
         Vector3 newMovePos = new Vector3(movePos.x, Rb.velocity.y, movePos.z);
+        Vector3 strafeTest = new Vector3(movePos.x, movePos.z);
 
         Rb.velocity = newMovePos;
 
@@ -32,10 +44,19 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(gndCheck.transform.position, -gndCheck.transform.up, out hit, Mathf.Infinity))
         {
-            if (isGrounded == false && hit.distance < groundDistance)
+            if (hit.distance < groundDistance)
             {
                 isGrounded = true;
             }
+            else
+            {
+                isGrounded = false;
+            }
+        }
+
+        if (canJump == false)
+        {
+            isGrounded = false;
         }
     }
 
