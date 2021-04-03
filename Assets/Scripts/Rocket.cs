@@ -11,6 +11,7 @@ public class Rocket : MonoBehaviour
     private Vector3 maincamdirec;
     public int power = 10;
     public int radius = 5;
+    public float upForce = 1.0f;
 
     private Rigidbody ignoredRb;
     private GameObject player;
@@ -51,7 +52,7 @@ public class Rocket : MonoBehaviour
             Rigidbody rigg = nearby.GetComponent<Rigidbody>();
             if (rigg != null && nearby != nearby.CompareTag("Rocket"))
             {
-                rigg.AddExplosionForce(power, transform.position, radius);
+                rigg.AddExplosionForce(power, transform.position, radius, upForce, ForceMode.Impulse);
             }
         }
     }

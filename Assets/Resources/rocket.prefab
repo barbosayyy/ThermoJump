@@ -98,10 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 0}
-  projectileSpeed: 10
+  projectileSpeed: 20
   pivotdirection: {x: 0, y: 0, z: 0}
-  power: 1000
+  power: 10
   radius: 4
+  upForce: 1
 --- !u!65 &2202478064607176222
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
 
         Vector3 movePos = transform.right * hMovement + transform.forward * vMovement;
         Vector3 newMovePos = new Vector3(movePos.x, Rb.velocity.y, movePos.z);
-        Vector3 strafeTest = new Vector3(movePos.x, movePos.z);
 
         Rb.velocity = newMovePos;
 
