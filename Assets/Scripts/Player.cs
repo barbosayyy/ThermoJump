@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float strafeVelocity;
     public GameObject gndCheck;
     public bool isGrounded;
+    public bool canMove = true;
     public float jumpTimer = 3f;
     public  bool canJump;
     public float groundDistance = 0.01f;
@@ -16,11 +17,16 @@ public class Player : MonoBehaviour
     public float vMovement;
     public float mAxisX;
     public float mAxisY;
+    public GameObject rotationRight;
+    public GameObject rotationLeft;
+    public GameObject rotationNone;
 
+    private GameObject rocketLauncherPos;
     private Rigidbody Rb;
     void Start()
     {
         Rb = gameObject.GetComponent<Rigidbody>();
+        rocketLauncherPos = GameObject.FindGameObjectWithTag("RocketLauncher");
     }
 
     void Update()
@@ -29,6 +35,25 @@ public class Player : MonoBehaviour
         vMovement = Input.GetAxisRaw("Vertical") * playerSpeed;
         mAxisX = Input.GetAxis("Mouse X");
         mAxisY = Input.GetAxis("Mouse Y");
+
+        Transform from = rocketLauncherPos.transform;
+        Transform to;
+        Transform original = rotationNone.transform;
+        if (hMovement > 1)
+        {
+            to = rotationRight.transform;
+            rocketLauncherPos.transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
+        }
+        if (hMovement < -1)
+        {
+            to = rotationLeft.transform;
+            rocketLauncherPos.transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
+        }
+        if (hMovement == 0)
+        {
+            to = rotationNone.transform;
+            rocketLauncherPos.transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
+        }
     }
 
     void FixedUpdate()
@@ -37,7 +62,10 @@ public class Player : MonoBehaviour
         Vector3 movePos = transform.right * hMovement + transform.forward * vMovement;
         Vector3 newMovePos = new Vector3(movePos.x, Rb.velocity.y, movePos.z);
 
-        Rb.velocity = newMovePos;
+        if (canMove)
+        {
+            Rb.velocity = newMovePos;
+        }
 
         RaycastHit hit;
 
@@ -56,6 +84,28 @@ public class Player : MonoBehaviour
         if (canJump == false)
         {
             isGrounded = false;
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawCube(gndCheck.transform.position, new Vector3(0.4f, 0.4f, 0.4f));
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider != null && isGrounded == false)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
+        if (isGrounded == true)
+        {
+            canMove = true;
         }
     }
 
