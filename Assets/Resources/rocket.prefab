@@ -100,7 +100,7 @@ MonoBehaviour:
   pivot: {fileID: 0}
   projectileSpeed: 16
   pivotdirection: {x: 0, y: 0, z: 0}
-  power: 14
+  power: 10
   radius: 4
   upForce: 1
 --- !u!65 &2202478064607176222
