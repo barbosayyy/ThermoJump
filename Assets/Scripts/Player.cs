@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     public float playerSpeed;
     public float jumpForce;
-    public float strafeVelocity;
     public GameObject gndCheck;
     public bool isGrounded;
     public bool canMove = true;
@@ -17,6 +16,12 @@ public class Player : MonoBehaviour
     public float vMovement;
     public float mAxisX;
     public float mAxisY;
+    public float maxVerticalSpeed = 10;
+    public float maxHorizontalSpeed = 10;
+    public float accelSpeed = 40;
+    public float airSpeed = 10;
+    public float gravity = -1;
+    private float initialSpeed;
     public GameObject rotationRight;
     public GameObject rotationLeft;
     public GameObject rotationNone;
@@ -27,12 +32,13 @@ public class Player : MonoBehaviour
     {
         Rb = gameObject.GetComponent<Rigidbody>();
         rocketLauncherPos = GameObject.FindGameObjectWithTag("RocketLauncher");
+        initialSpeed = playerSpeed;
     }
-
+        
     void Update()
     {
-        hMovement = Input.GetAxisRaw("Horizontal") * playerSpeed;
-        vMovement = Input.GetAxisRaw("Vertical") * playerSpeed;
+        hMovement = Input.GetAxisRaw("Horizontal");
+        vMovement = Input.GetAxisRaw("Vertical");
         mAxisX = Input.GetAxis("Mouse X");
         mAxisY = Input.GetAxis("Mouse Y");
 
@@ -54,37 +60,13 @@ public class Player : MonoBehaviour
             to = rotationNone.transform;
             rocketLauncherPos.transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
         }
+
+        LimitVerticalVelocity();
     }
 
     void FixedUpdate()
     {
-
-        Vector3 movePos = transform.right * hMovement + transform.forward * vMovement;
-        Vector3 newMovePos = new Vector3(movePos.x, Rb.velocity.y, movePos.z);
-
-        if (canMove)
-        {
-            Rb.velocity = newMovePos;
-        }
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(gndCheck.transform.position, -gndCheck.transform.up, out hit, Mathf.Infinity))
-        {
-            if (hit.distance < groundDistance)
-            {
-                isGrounded = true;
-            }
-            else
-            {
-                isGrounded = false;
-            }
-        }
-
-        if (canJump == false)
-        {
-            isGrounded = false;
-        }
+        MovementAF();
     }
 
     void OnDrawGizmosSelected()
@@ -124,5 +106,116 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(jumpTimer);
         yield return canJump = true;
+    }
+
+    void MovementTransform()
+    {
+        Vector3 movePos = transform.right * hMovement + transform.forward * vMovement;
+        Vector3 newMovePos = new Vector3(movePos.x, Rb.velocity.y, movePos.z);
+
+        if (canMove)
+        {
+            Rb.velocity = newMovePos;
+        }
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(gndCheck.transform.position, -gndCheck.transform.up, out hit, Mathf.Infinity))
+        {
+            if (hit.distance < groundDistance)
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
+            }
+        }
+
+        if (canJump == false)
+        {
+            isGrounded = false;
+        }
+    }
+
+    void MovementAF()
+    {
+        Vector3 x = transform.right * hMovement;
+        Vector3 z = transform.forward * vMovement;
+
+        Vector3 movement = (x + z).normalized * playerSpeed;
+
+        Rb.AddForce(movement);
+
+        if (Rb.velocity.x < 1 && Rb.velocity.x > -1 || Rb.velocity.z < 1 && Rb.velocity.z > -1)
+        {
+            playerSpeed = accelSpeed;
+        }
+        else
+        {
+            playerSpeed = initialSpeed;
+        }
+
+        if (isGrounded != true)
+        {
+            playerSpeed = airSpeed;
+        }
+
+        if (Rb.velocity.x > maxHorizontalSpeed)
+        {
+            Vector3 vel = Rb.velocity.normalized * maxHorizontalSpeed;
+            vel.y = Rb.velocity.y;
+            Rb.velocity = vel;
+            //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
+        }
+        else if (Rb.velocity.x < -maxHorizontalSpeed)
+        {
+            Vector3 vel = Rb.velocity.normalized * maxHorizontalSpeed;
+            vel.y = Rb.velocity.y;
+            Rb.velocity = vel;
+            //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
+        }
+
+        if (Rb.velocity.z > maxHorizontalSpeed)
+        {
+            Vector3 vel = Rb.velocity.normalized * maxHorizontalSpeed;
+            vel.y = Rb.velocity.y;
+            Rb.velocity = vel;
+            //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
+        }
+        else if (Rb.velocity.z < -maxHorizontalSpeed)
+        {
+            Vector3 vel = Rb.velocity.normalized * maxHorizontalSpeed;
+            vel.y = Rb.velocity.y;
+            Rb.velocity = vel;
+            //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
+        }
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(gndCheck.transform.position, -gndCheck.transform.up, out hit, Mathf.Infinity))
+        {
+            if (hit.distance < groundDistance)
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
+            }
+        }
+
+        if (canJump == false)
+        {
+            isGrounded = false;
+        }
+    }
+
+    void LimitVerticalVelocity()
+    {
+        if (Rb.velocity.y > maxVerticalSpeed)
+        {
+            Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxVerticalSpeed);
+        }
     }
 }
