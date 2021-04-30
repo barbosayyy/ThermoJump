@@ -14,10 +14,12 @@ public class Rocket : MonoBehaviour
     public float upForce = 1.0f;
 
     private Rigidbody ignoredRb;
+    private GameObject explosionFx;
     private GameObject player;
 
     void Start()
     {
+        explosionFx = Resources.Load<GameObject>("Explosion");
         ignoredRb = gameObject.GetComponent<Rigidbody>();
         pivot = GameObject.FindGameObjectWithTag("ShootPivot");
         gameObject.transform.position = pivot.transform.position;
@@ -40,6 +42,7 @@ public class Rocket : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         KnockBack();
+        GameObject.Instantiate(explosionFx, gameObject.transform.localPosition, Quaternion.identity);
         Destroy(gameObject);
     }
 

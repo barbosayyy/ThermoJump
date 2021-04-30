@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float jumpForce;
     public GameObject gndCheck;
     public bool isGrounded;
+    public bool isMoving = false;
     public bool canMove = true;
     public float jumpTimer = 3f;
     public  bool canJump;
@@ -18,13 +19,32 @@ public class Player : MonoBehaviour
     public float mAxisY;
     public float maxVerticalSpeed = 10;
     public float maxHorizontalSpeed = 10;
-    public float accelSpeed = 40;
+    public float maxSpeed = 40;
     public float airSpeed = 10;
     public float gravity = -1;
-    private float initialSpeed;
+    private float acccelSpeed;
     public GameObject rotationRight;
     public GameObject rotationLeft;
     public GameObject rotationNone;
+
+    //Launcher Sway
+
+    public float swayAmount = 0.02f;
+    public float maxSwayAmount = 0.06f;
+    public float smoothSwayAmount = 6f;
+
+    public float swayRotationAmount = 4f;
+    public float maxSwayRotationAmount = 5f;
+    public float smoothSwayRotation = 12f;
+
+    public bool rotationX = true;
+    public bool rotationY = true;
+    public bool rotationZ = true;
+
+    //Other privates
+
+    private Vector3 initialLauncherPos;
+    private Quaternion initialLauncherRotation;
 
     private GameObject rocketLauncherPos;
     private Rigidbody Rb;
@@ -32,7 +52,10 @@ public class Player : MonoBehaviour
     {
         Rb = gameObject.GetComponent<Rigidbody>();
         rocketLauncherPos = GameObject.FindGameObjectWithTag("RocketLauncher");
-        initialSpeed = playerSpeed;
+        acccelSpeed = playerSpeed;
+
+        initialLauncherRotation = rocketLauncherPos.transform.localRotation;
+        initialLauncherPos = rocketLauncherPos.transform.localPosition;
     }
         
     void Update()
@@ -41,6 +64,15 @@ public class Player : MonoBehaviour
         vMovement = Input.GetAxisRaw("Vertical");
         mAxisX = Input.GetAxis("Mouse X");
         mAxisY = Input.GetAxis("Mouse Y");
+
+        if (hMovement != 0 || vMovement != 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
 
         Transform from = rocketLauncherPos.transform;
         Transform to;
@@ -62,17 +94,20 @@ public class Player : MonoBehaviour
         }
 
         LimitVerticalVelocity();
+        LauncherSway();
     }
 
     void FixedUpdate()
-    {
+    {   
         MovementAF();
+        DetectGround();
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(gndCheck.transform.position, new Vector3(0.4f, 0.4f, 0.4f));
+        //Gizmos.DrawWireCube(gameObject.transform.position + transform.forward * hit.distance, transform.localScale);
+        //Gizmos.DrawCube(gndCheck.transform.position, new Vector3(0.4f, 0.4f, 0.4f));
     }
 
     void OnCollisionStay(Collision collision)
@@ -108,7 +143,7 @@ public class Player : MonoBehaviour
         yield return canJump = true;
     }
 
-    void MovementTransform()
+    /*void MovementTransform()
     {
         Vector3 movePos = transform.right * hMovement + transform.forward * vMovement;
         Vector3 newMovePos = new Vector3(movePos.x, Rb.velocity.y, movePos.z);
@@ -136,7 +171,10 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
         }
-    }
+
+    }*/
+
+    //Movement by adding force + friction, speed etc
 
     void MovementAF()
     {
@@ -147,18 +185,27 @@ public class Player : MonoBehaviour
 
         Rb.AddForce(movement);
 
-        if (Rb.velocity.x < 1 && Rb.velocity.x > -1 || Rb.velocity.z < 1 && Rb.velocity.z > -1)
+        if (Rb.velocity.magnitude < 2)
         {
-            playerSpeed = accelSpeed;
+            playerSpeed = acccelSpeed;
         }
         else
         {
-            playerSpeed = initialSpeed;
+            playerSpeed = maxSpeed;
         }
 
         if (isGrounded != true)
         {
             playerSpeed = airSpeed;
+        }
+
+        if (isGrounded == true)
+        {
+            Rb.drag = 5;
+        }
+        else
+        {
+            Rb.drag = 0;
         }
 
         if (Rb.velocity.x > maxHorizontalSpeed)
@@ -190,7 +237,20 @@ public class Player : MonoBehaviour
             Rb.velocity = vel;
             //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
         }
+    }
 
+    // Velocity Limiter
+
+    void LimitVerticalVelocity()
+    {
+        if (Rb.velocity.y > maxVerticalSpeed)
+        {
+            Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxVerticalSpeed);
+        }
+    }
+
+    void DetectGround()
+    {
         RaycastHit hit;
 
         if (Physics.Raycast(gndCheck.transform.position, -gndCheck.transform.up, out hit, Mathf.Infinity))
@@ -211,11 +271,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    void LimitVerticalVelocity()
+    void LauncherSway()
     {
-        if (Rb.velocity.y > maxVerticalSpeed)
-        {
-            Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxVerticalSpeed);
-        }
+        float swayInputX = -mAxisX;
+        float swayInputY = -mAxisY;
+
+        float moveSwayX = Mathf.Clamp(swayInputX * swayAmount, -maxSwayAmount, maxSwayAmount);
+        float moveSwayY = Mathf.Clamp(swayInputX * swayAmount, -maxSwayAmount, maxSwayAmount);
+
+        Vector3 finalSwayPos = new Vector3(moveSwayX, moveSwayY, 0);
+
+        rocketLauncherPos.transform.localPosition = Vector3.Lerp(rocketLauncherPos.transform.localPosition, finalSwayPos + initialLauncherPos, Time.deltaTime * smoothSwayAmount);
+
+        float swayTiltY = Mathf.Clamp(swayInputX * swayRotationAmount, -maxSwayRotationAmount, maxSwayRotationAmount);
+        float swayTiltX = Mathf.Clamp(swayInputY * swayRotationAmount, -maxSwayRotationAmount, maxSwayRotationAmount);
+
+        Quaternion finalSwayRotation = Quaternion.Euler(new Vector3(rotationX ? -swayTiltX : 0f, rotationY ? swayTiltY : 0f, rotationZ ? swayTiltY : 0));
+
+        rocketLauncherPos.transform.localRotation = Quaternion.Slerp(rocketLauncherPos.transform.localRotation, finalSwayRotation * initialLauncherRotation, Time.deltaTime * smoothSwayRotation);
     }
 }

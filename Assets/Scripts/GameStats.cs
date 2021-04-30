@@ -14,6 +14,6 @@ public class GameStats : MonoBehaviour
 
     void Update()
     {
-        fps.text = "FPS: " + (int)(1f / Time.unscaledDeltaTime);
+        fps.text = "FPS: " + (Mathf.Round(1f / Time.deltaTime));
     }
 }
