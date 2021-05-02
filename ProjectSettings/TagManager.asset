@@ -8,6 +8,8 @@ TagManager:
   - Rocket
   - RocketLauncher
   - LevelManager
+  - Sun
+  - EnvironmentCastle
   layers:
   - Default
   - TransparentFX
