@@ -109,7 +109,7 @@ MonoBehaviour:
     m_Value: 233.5
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 43.64
+    m_Value: 64.3
     min: 1
   enableVolumetricFog:
     m_OverrideState: 1
@@ -527,7 +527,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.01
+    m_Value: 1.38
     min: 0
     max: 4
   directLightingStrength:

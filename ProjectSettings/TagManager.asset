@@ -10,6 +10,8 @@ TagManager:
   - LevelManager
   - Sun
   - EnvironmentCastle
+  - EnvironmentForest
+  - SfVolume
   layers:
   - Default
   - TransparentFX

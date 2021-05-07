@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
     public bool rotationY = true;
     public bool rotationZ = true;
 
+    public GameObject spawn1;
+    public GameObject spawn2;
+
     //Other privates
 
     private Vector3 initialLauncherPos;
@@ -95,6 +98,7 @@ public class Player : MonoBehaviour
 
         LimitVerticalVelocity();
         LauncherSway();
+        TeleportLocations();
     }
 
     void FixedUpdate()
@@ -289,5 +293,18 @@ public class Player : MonoBehaviour
         Quaternion finalSwayRotation = Quaternion.Euler(new Vector3(rotationX ? -swayTiltX : 0f, rotationY ? swayTiltY : 0f, rotationZ ? swayTiltY : 0));
 
         rocketLauncherPos.transform.localRotation = Quaternion.Slerp(rocketLauncherPos.transform.localRotation, finalSwayRotation * initialLauncherRotation, Time.deltaTime * smoothSwayRotation);
+    }
+
+    void TeleportLocations()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            gameObject.transform.position = spawn1.transform.position;
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            gameObject.transform.position = spawn2.transform.position;
+        }
+
     }
 }

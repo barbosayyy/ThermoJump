@@ -8,16 +8,21 @@ public class ShootRocket : MonoBehaviour
     public bool hasShot = false;
     public float waitTime = 3f;
     private float shootingCooldown;
+    public bool canShoot;
+    public bool hasWeapon;
+    public GameObject rocketLauncher;
 
     private GameObject rocketPrefab;
     private Vector3 pivotpos;
-
 
 
     void Start()
     {
         pivotpos = pivot.transform.position;
         rocketPrefab = Resources.Load<GameObject>("rocket");
+        rocketLauncher.SetActive(false);
+        hasWeapon = false;
+        canShoot = false;
     }
 
     void Update()
@@ -31,16 +36,28 @@ public class ShootRocket : MonoBehaviour
         {
             hasShot = false;
         }
+
+        if (hasWeapon)
+        {
+            rocketLauncher.SetActive(true);
+            canShoot = true;
+        }
     }
 
     public void Shoot()
     {
-        if(hasShot == false)
+        if (hasWeapon)
         {
-            GameObject.Instantiate(rocketPrefab, pivotpos, Quaternion.identity);
-            Debug.Log("shot rocket");
-            shootingCooldown = waitTime;
-            hasShot = true;
+            if (canShoot)
+            {
+                if (hasShot == false)
+                {
+                    GameObject.Instantiate(rocketPrefab, pivotpos, Quaternion.identity);
+                    Debug.Log("shot rocket");
+                    shootingCooldown = waitTime;
+                    hasShot = true;
+                }
+            }
         }
     }
 }
