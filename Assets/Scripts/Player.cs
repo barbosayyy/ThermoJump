@@ -46,11 +46,29 @@ public class Player : MonoBehaviour
 
     //Other privates
 
+    private InputMaster inputMaster;
+
     private Vector3 initialLauncherPos;
     private Quaternion initialLauncherRotation;
 
     private GameObject rocketLauncherPos;
     private Rigidbody Rb;
+
+    void Awake()
+    {
+        inputMaster = new InputMaster();
+    }
+
+    private void OnEnable()
+    {
+        inputMaster.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputMaster.Disable();
+    }
+
     void Start()
     {
         Rb = gameObject.GetComponent<Rigidbody>();
@@ -63,8 +81,9 @@ public class Player : MonoBehaviour
         
     void Update()
     {
-        hMovement = Input.GetAxisRaw("Horizontal");
-        vMovement = Input.GetAxisRaw("Vertical");
+        // Read Input 
+        hMovement = inputMaster.PlayerInput.Sideways.ReadValue<float>();
+        vMovement = inputMaster.PlayerInput.Forward.ReadValue<float>();
         mAxisX = Input.GetAxis("Mouse X");
         mAxisY = Input.GetAxis("Mouse Y");
 
@@ -146,39 +165,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(jumpTimer);
         yield return canJump = true;
     }
-
-    /*void MovementTransform()
-    {
-        Vector3 movePos = transform.right * hMovement + transform.forward * vMovement;
-        Vector3 newMovePos = new Vector3(movePos.x, Rb.velocity.y, movePos.z);
-
-        if (canMove)
-        {
-            Rb.velocity = newMovePos;
-        }
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(gndCheck.transform.position, -gndCheck.transform.up, out hit, Mathf.Infinity))
-        {
-            if (hit.distance < groundDistance)
-            {
-                isGrounded = true;
-            }
-            else
-            {
-                isGrounded = false;
-            }
-        }
-
-        if (canJump == false)
-        {
-            isGrounded = false;
-        }
-
-    }*/
-
-    //Movement by adding force + friction, speed etc
 
     void MovementAF()
     {

@@ -9,6 +9,7 @@ public class Rocket : MonoBehaviour
     public Vector3 pivotdirection;
     private Camera maincam;
     private Vector3 maincamdirec;
+    private Vector3 prevPos;
     public int power = 10;
     public int radius = 5;
     public float upForce = 1.0f;
@@ -29,6 +30,8 @@ public class Rocket : MonoBehaviour
         maincam = Camera.main;
         maincamdirec = maincam.transform.forward;
 
+        prevPos = transform.position;
+
         player = GameObject.FindGameObjectWithTag("Player");
 
         Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), player.GetComponent<Collider>());  
@@ -36,14 +39,19 @@ public class Rocket : MonoBehaviour
 
     void Update()
     {
+        prevPos = transform.position;
         gameObject.transform.position += -gameObject.transform.forward * projectileSpeed * Time.deltaTime;
-    }
+        RaycastHit[] hits = Physics.RaycastAll(new Ray(prevPos, (transform.position - prevPos).normalized), (transform.position - prevPos).magnitude);
 
-    void OnCollisionEnter(Collision col)
-    {
-        KnockBack();
-        GameObject.Instantiate(explosionFx, gameObject.transform.localPosition, Quaternion.identity);
-        Destroy(gameObject);
+        for(int i = 0; i < hits.Length; i++)
+        {
+            Debug.Log(hits[i].collider.gameObject.name);
+            KnockBack();
+            GameObject.Instantiate(explosionFx, gameObject.transform.localPosition, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
+        Debug.DrawLine(transform.position, prevPos);
     }
 
     void KnockBack()
