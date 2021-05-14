@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movement")]
     public float playerSpeed;
     public float jumpForce;
     public GameObject gndCheck;
@@ -26,23 +27,28 @@ public class Player : MonoBehaviour
     public GameObject rotationRight;
     public GameObject rotationLeft;
     public GameObject rotationNone;
-
     //Launcher Sway
-
+    [Header("Weapon Sway")]
     public float swayAmount = 0.02f;
     public float maxSwayAmount = 0.06f;
     public float smoothSwayAmount = 6f;
-
     public float swayRotationAmount = 4f;
     public float maxSwayRotationAmount = 5f;
     public float smoothSwayRotation = 12f;
-
     public bool rotationX = true;
     public bool rotationY = true;
     public bool rotationZ = true;
-
     public GameObject spawn1;
     public GameObject spawn2;
+
+    [Header("Head Bobbing")]
+
+    private float timer;
+    public Camera mainCam;
+    private Vector3 camTransform;
+    public float bobbingSpeed;
+    public float bobbingAmount;
+    public float midpoint;
 
     //Other privates
 
@@ -77,6 +83,8 @@ public class Player : MonoBehaviour
 
         initialLauncherRotation = rocketLauncherPos.transform.localRotation;
         initialLauncherPos = rocketLauncherPos.transform.localPosition;
+
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
         
     void Update()
@@ -118,6 +126,10 @@ public class Player : MonoBehaviour
         LimitVerticalVelocity();
         LauncherSway();
         TeleportLocations();
+        if (isGrounded == true)
+        {
+            HeadBob();
+        }
     }
 
     void FixedUpdate()
@@ -175,58 +187,15 @@ public class Player : MonoBehaviour
 
         Rb.AddForce(movement);
 
-        if (Rb.velocity.magnitude < 2)
-        {
-            playerSpeed = acccelSpeed;
-        }
-        else
-        {
-            playerSpeed = maxSpeed;
-        }
+        Vector3 velocity = Rb.velocity;
+        float vertVelocity = velocity.y;
 
-        if (isGrounded != true)
-        {
-            playerSpeed = airSpeed;
-        }
+        velocity.y = 0;
 
-        if (isGrounded == true)
-        {
-            Rb.drag = 5;
-        }
-        else
-        {
-            Rb.drag = 0;
-        }
+        velocity = Vector3.ClampMagnitude(velocity, maxHorizontalSpeed);
 
-        if (Rb.velocity.x > maxHorizontalSpeed)
-        {
-            Vector3 vel = Rb.velocity.normalized * maxHorizontalSpeed;
-            vel.y = Rb.velocity.y;
-            Rb.velocity = vel;
-            //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
-        }
-        else if (Rb.velocity.x < -maxHorizontalSpeed)
-        {
-            Vector3 vel = Rb.velocity.normalized * maxHorizontalSpeed;
-            vel.y = Rb.velocity.y;
-            Rb.velocity = vel;
-            //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
-        }
-
-        if (Rb.velocity.z > maxHorizontalSpeed)
-        {
-            Vector3 vel = Rb.velocity.normalized * maxHorizontalSpeed;
-            vel.y = Rb.velocity.y;
-            Rb.velocity = vel;
-            //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
-        }
-        else if (Rb.velocity.z < -maxHorizontalSpeed)
-        {
-            Vector3 vel = Rb.velocity.normalized * maxHorizontalSpeed;
-            vel.y = Rb.velocity.y;
-            Rb.velocity = vel;
-            //Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxHorizontalSpeed);
-        }
+        velocity.y = vertVelocity;
+        Rb.velocity = velocity;
     }
 
     // Velocity Limiter
@@ -292,5 +261,39 @@ public class Player : MonoBehaviour
             gameObject.transform.position = spawn2.transform.position;
         }
 
+    }
+
+    void HeadBob()
+    {
+        float waveslice = 0f;
+        
+
+        if(Mathf.Abs(hMovement) == 0 && Mathf.Abs(vMovement) == 0)
+        {
+            timer = 0f;
+        }
+        else
+        {
+            waveslice = Mathf.Sin(timer);
+            timer = timer + bobbingSpeed;
+            if (timer > Mathf.PI * 2)
+            {
+                timer = timer - (Mathf.PI * 2);
+            }
+        }
+        if (waveslice != 0)
+        {
+            float translateChange = waveslice * bobbingAmount;
+            float totalAxes = Mathf.Abs(hMovement) + Mathf.Abs(vMovement);
+            totalAxes = Mathf.Clamp(totalAxes, 0f, 1f);
+            translateChange = totalAxes * translateChange;
+            camTransform.y = midpoint + translateChange;
+            mainCam.transform.localPosition = camTransform;
+        }
+        else
+        {
+            camTransform.y = midpoint;
+            mainCam.transform.localPosition = camTransform;
+        }
     }
 }
