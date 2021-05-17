@@ -20,10 +20,10 @@ public class Player : MonoBehaviour
     public float mAxisY;
     public float maxVerticalSpeed = 10;
     public float maxHorizontalSpeed = 10;
-    public float maxSpeed = 40;
+    public float defaultSpeed = 40;
     public float airSpeed = 10;
     public float gravity = -1;
-    private float acccelSpeed;
+    private float accelSpeed;
     public GameObject rotationRight;
     public GameObject rotationLeft;
     public GameObject rotationNone;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     public GameObject spawn1;
     public GameObject spawn2;
 
-    [Header("Head Bobbing")]
+    [Header("Head Bobbing")]    
 
     private float timer;
     public Camera mainCam;
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         inputMaster = new InputMaster();
+        defaultSpeed = playerSpeed;
     }
 
     private void OnEnable()
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
     {
         Rb = gameObject.GetComponent<Rigidbody>();
         rocketLauncherPos = GameObject.FindGameObjectWithTag("RocketLauncher");
-        acccelSpeed = playerSpeed;
+        accelSpeed = playerSpeed;
 
         initialLauncherRotation = rocketLauncherPos.transform.localRotation;
         initialLauncherPos = rocketLauncherPos.transform.localPosition;
@@ -196,6 +197,15 @@ public class Player : MonoBehaviour
 
         velocity.y = vertVelocity;
         Rb.velocity = velocity;
+
+        if (isGrounded != true)
+        {
+            playerSpeed = airSpeed;
+        }
+        else
+        {
+            playerSpeed = defaultSpeed;
+        }
     }
 
     // Velocity Limiter

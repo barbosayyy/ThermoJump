@@ -393,8 +393,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:/Users/Pedro/Desktop/thermojump/thermojump.fspro
-  sourceBankPath: C:\Users\Pedro\Desktop\thermojump\Build
+  sourceProjectPath: Assets/Fmod Studio/Thermojump FmodStudio/thermojump.fspro
+  sourceBankPath: Assets\Fmod Studio\Thermojump FmodStudio\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
