@@ -101,7 +101,7 @@ MonoBehaviour:
   pivotdirection: {x: 0, y: 0, z: 0}
   power: 35
   radius: 10
-  upForce: 20
+  upForce: 0
 --- !u!65 &2202478064607176222
 BoxCollider:
   m_ObjectHideFlags: 0

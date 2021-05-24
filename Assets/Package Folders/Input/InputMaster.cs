@@ -49,6 +49,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""807bff7f-80fb-4df5-8594-0b147e4e6ef0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -205,6 +213,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Forward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d261397-3b1f-4d15-b9ee-666531e21b81"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -234,6 +253,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_PlayerInput_Jump = m_PlayerInput.FindAction("Jump", throwIfNotFound: true);
         m_PlayerInput_Sideways = m_PlayerInput.FindAction("Sideways", throwIfNotFound: true);
         m_PlayerInput_Forward = m_PlayerInput.FindAction("Forward", throwIfNotFound: true);
+        m_PlayerInput_Interact = m_PlayerInput.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -287,6 +307,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerInput_Jump;
     private readonly InputAction m_PlayerInput_Sideways;
     private readonly InputAction m_PlayerInput_Forward;
+    private readonly InputAction m_PlayerInput_Interact;
     public struct PlayerInputActions
     {
         private @InputMaster m_Wrapper;
@@ -295,6 +316,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerInput_Jump;
         public InputAction @Sideways => m_Wrapper.m_PlayerInput_Sideways;
         public InputAction @Forward => m_Wrapper.m_PlayerInput_Forward;
+        public InputAction @Interact => m_Wrapper.m_PlayerInput_Interact;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -316,6 +338,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Forward.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForward;
                 @Forward.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForward;
                 @Forward.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnForward;
+                @Interact.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -332,6 +357,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Forward.started += instance.OnForward;
                 @Forward.performed += instance.OnForward;
                 @Forward.canceled += instance.OnForward;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -351,5 +379,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSideways(InputAction.CallbackContext context);
         void OnForward(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

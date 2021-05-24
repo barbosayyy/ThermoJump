@@ -47,12 +47,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1095e06d66ed4258a4b957067bffff57: -0.24
-    - Vector1_46c00d7962f443a2a75e1560274319b3: 1.21
-    - Vector1_61343f413c9c499298a9da9a979bb233: 1.05
-    - Vector1_77d21a57f8744d47a74e9eff18aaeaee: 0.28
+    - Vector1_1095e06d66ed4258a4b957067bffff57: -0.27
+    - Vector1_46c00d7962f443a2a75e1560274319b3: 0.23
+    - Vector1_61343f413c9c499298a9da9a979bb233: 0.4
+    - Vector1_77d21a57f8744d47a74e9eff18aaeaee: 0.93
+    - Vector1_8d43b14b2ee14145804b640cee2e6bc1: 175
     - Vector1_b8f1bbc0cb24433a9576149168f0591a: 1.56
-    - Vector1_bbf08941b7db4c5fa5e7e40aefdd07a6: 1.72
+    - Vector1_bbf08941b7db4c5fa5e7e40aefdd07a6: 0.72
+    - Vector1_ce91af67fe9f4b47ad13b59ff6b8edf3: 0.1
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 10
@@ -101,9 +103,10 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - Color_10cfb440505d45dbbe37b0c567751597: {r: 0.010991452, g: 0.05551663, b: 0.122641504,
+    - Color_10cfb440505d45dbbe37b0c567751597: {r: 0, g: 0.07687842, b: 0.11372549,
         a: 0.9019608}
-    - Color_fa80ea2b1a4e4705bd5ede67f9175fda: {r: 0, g: 0.17919712, b: 0.254717, a: 0.25490198}
+    - Color_fa80ea2b1a4e4705bd5ede67f9175fda: {r: 0.0020469967, g: 0.43069032, b: 0.4339623,
+        a: 0.25490198}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
