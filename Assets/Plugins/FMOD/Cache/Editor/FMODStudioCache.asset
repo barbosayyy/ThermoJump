@@ -57,17 +57,77 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 7858197422915692802}
-  - {fileID: 5739367228089834751}
+  - {fileID: 556553468201067744}
+  - {fileID: 1240064987995975330}
   EditorEvents:
-  - {fileID: -6422273663108472578}
+  - {fileID: 8274338757475184591}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 5739367228089834751}
+  - {fileID: 1240064987995975330}
   StringsBanks:
-  - {fileID: 7858197422915692802}
-  stringsBankWriteTime: 637572054430451251
+  - {fileID: 556553468201067744}
+  stringsBankWriteTime: 637578158110836242
   cacheVersion: 6
+--- !u!114 &519076546409878429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &556553468201067744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637578158110836242
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 796
+  Exists: 1
+--- !u!114 &1240064987995975330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637578158110816258
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &3636762709124559438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +189,30 @@ MonoBehaviour:
   - Name: Desktop
     Value: 742
   Exists: 1
+--- !u!114 &8274338757475184591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FootSteps
+  m_EditorClassIdentifier: 
+  Path: event:/FootSteps
+  guid: 90b82e4c524d1d47ad73e7d215c38bdb
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 519076546409878429}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1000
 --- !u!114 &8695869367042934593
 MonoBehaviour:
   m_ObjectHideFlags: 0
