@@ -63,7 +63,7 @@ public class ShootRocket : MonoBehaviour
                     Debug.Log("shot rocket");
                     shootingCooldown = waitTime;
                     hasShot = true;
-                    
+                    //PLAY FMOD CLIP
                 }
             }
         }

@@ -66,7 +66,7 @@ MonoBehaviour:
   - {fileID: 5739367228089834751}
   StringsBanks:
   - {fileID: 7858197422915692802}
-  stringsBankWriteTime: 637566153289771030
+  stringsBankWriteTime: 637572054430451251
   cacheVersion: 6
 --- !u!114 &3636762709124559438
 MonoBehaviour:
@@ -104,7 +104,7 @@ MonoBehaviour:
   Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637566153289761019
+  lastModified: 637572054430295020
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637566153289771030
+  lastModified: 637572054430451251
   LoadResult: 0
   FileSizes:
   - Name: Desktop
