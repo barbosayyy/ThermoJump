@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
     public float jumpTimer = 3f;
     public  bool canJump;
     public float groundDistance = 0.01f;
+    public LayerMask sphereMask;
+    
+    public float sphereCastRadius =  0.25f;
+    public float sphereCastDistance = 0.75f;
+
     public float hMovement;
     public float vMovement;
     public float mAxisX;
@@ -127,7 +132,7 @@ public class Player : MonoBehaviour
         LimitVerticalVelocity();
         LauncherSway();
         TeleportLocations();
-        if (isGrounded == true)
+        if (isGrounded == true && canMove == true)
         {
             HeadBob();
         }
@@ -135,8 +140,11 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {   
-        MovementAF();
-        DetectGround();
+        if (canMove == true)
+        {
+            MovementAF();
+            DetectGround();
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -146,7 +154,7 @@ public class Player : MonoBehaviour
         //Gizmos.DrawCube(gndCheck.transform.position, new Vector3(0.4f, 0.4f, 0.4f));
     }
 
-    void OnCollisionStay(Collision collision)
+    /*void OnCollisionStay(Collision collision)
     {
         if (collision.collider != null && isGrounded == false)
         {
@@ -160,7 +168,7 @@ public class Player : MonoBehaviour
         {
             canMove = true;
         }
-    }
+    }*/
 
     public void Jump()
     {
@@ -222,6 +230,17 @@ public class Player : MonoBehaviour
     {
         RaycastHit hit;
 
+        if (Physics.SphereCast(gndCheck.transform.position, sphereCastRadius, Vector3.down, out hit, sphereCastDistance, sphereMask))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        /*
+
         if (Physics.Raycast(gndCheck.transform.position, -gndCheck.transform.up, out hit, Mathf.Infinity))
         {
             if (hit.distance < groundDistance)
@@ -233,7 +252,7 @@ public class Player : MonoBehaviour
                 isGrounded = false;
             }
         }
-
+        */
         if (canJump == false)
         {
             isGrounded = false;
@@ -305,5 +324,10 @@ public class Player : MonoBehaviour
             camTransform.y = midpoint;
             mainCam.transform.localPosition = camTransform;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(gndCheck.transform.position, sphereCastRadius);
     }
 }

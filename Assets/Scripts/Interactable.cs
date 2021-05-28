@@ -6,23 +6,36 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     public bool isInRange;
+    public bool isLooking;
     public UnityEvent interactAction;
 
     private void Start()
     {
         isInRange = false;
+        isLooking = false;
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerStay(Collider collider)
     {
         if (collider.CompareTag("Player") || collider.CompareTag("Rocket"))
         {
             isInRange = true;
-            interactAction.Invoke();
         }
-        else
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.CompareTag("Player")|| collider.CompareTag("Rocket"))
         {
             isInRange = false;
+        }
+    }
+
+    public void Interact()
+    {
+        if (isLooking == true)
+        {
+            interactAction.Invoke();
         }
     }
 }

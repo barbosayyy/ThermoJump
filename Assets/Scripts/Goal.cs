@@ -14,7 +14,7 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            levelManager.Score += 1;
+            levelManager.score += 1;
             gameObject.SetActive(false);
         }
     }

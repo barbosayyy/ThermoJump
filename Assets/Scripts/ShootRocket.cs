@@ -12,9 +12,14 @@ public class ShootRocket : MonoBehaviour
     public bool hasWeapon;
     public GameObject rocketLauncher;
 
+    public Animator playerAnimator;
     private GameObject rocketPrefab;
     private Vector3 pivotpos;
 
+    void Awake()
+    {
+        playerAnimator = gameObject.GetComponentInChildren<Animator>();
+    }
 
     void Start()
     {
@@ -23,6 +28,7 @@ public class ShootRocket : MonoBehaviour
         rocketLauncher.SetActive(false);
         hasWeapon = false;
         canShoot = false;
+        
     }
 
     void Update()
@@ -52,10 +58,12 @@ public class ShootRocket : MonoBehaviour
             {
                 if (hasShot == false)
                 {
+                    playerAnimator.SetTrigger("ShootRocket");
                     GameObject.Instantiate(rocketPrefab, pivotpos, Quaternion.identity);
                     Debug.Log("shot rocket");
                     shootingCooldown = waitTime;
                     hasShot = true;
+                    
                 }
             }
         }

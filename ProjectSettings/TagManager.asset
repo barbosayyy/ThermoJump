@@ -12,6 +12,9 @@ TagManager:
   - EnvironmentCastle
   - EnvironmentForest
   - SfVolume
+  - PauseUI
+  - GameplayUI
+  - Interact
   layers:
   - Default
   - TransparentFX
@@ -25,9 +28,9 @@ TagManager:
   - Start
   - Projectiles
   - FPS
-  - 
-  - 
-  - 
+  - Terrain
+  - Player
+  - Interactables
   - 
   - 
   - 

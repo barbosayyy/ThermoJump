@@ -6,6 +6,7 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     public Transform player;
+    public bool canMoveCamera = true;
     public float mouseSensitivity = 10;
 
     private float x = 0;
@@ -17,6 +18,14 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        if (canMoveCamera == true)
+        {
+            MoveCamera();
+        }
+    }
+
+    void MoveCamera()
+    {
         float dtime = Time.deltaTime;
         x += -Input.GetAxis("Mouse Y") * mouseSensitivity;
         y += Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -26,7 +35,7 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(x, 0, 0);
         player.transform.localRotation = Quaternion.Euler(0, y, 0);
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Cursor.lockState == CursorLockMode.Locked)
             {
@@ -36,6 +45,6 @@ public class MouseLook : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.Locked;
             }
-        }
+        }*/
     }
 }
