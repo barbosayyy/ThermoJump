@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
     public GameObject spawn1;
     public GameObject spawn2;
 
+    [Header("FMod")]
+    FMOD.Studio.EventInstance FootSteps;
+
     [Header("Head Bobbing")]    
 
     private float timer;
