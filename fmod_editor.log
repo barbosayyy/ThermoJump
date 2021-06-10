@@ -7,54 +7,13 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001C7AE198D48 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001F4BA9AB2E8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] SoundI::release                          :  (000001C762477458)
-[LOG] SoundI::release                          :     StoneFootStep3 (000001C68B0F90B8)
-[LOG] SoundI::release                          :  (000001C68E5EA628)
-[LOG] SoundI::release                          :     StoneFootStep4 (000001C68B0F93F8)
-[LOG] SoundI::release                          :  (000001C762477A18)
-[LOG] SoundI::release                          :     StoneFootstep1 (000001C68B0F8898)
-[LOG] SoundI::release                          :  (000001C762477E68)
-[LOG] SoundI::release                          :     StoneFootstep2 (000001C68B0F8078)
-[LOG] SoundI::release                          :  (000001C68E5EA908)
-[LOG] SoundI::release                          :     ClothSf2 (000001C68B0F8F18)
-[LOG] SoundI::release                          :  (000001C68E5EAA78)
-[LOG] SoundI::release                          :     ClothSf3 (000001C68B0F9598)
-[LOG] SoundI::release                          :  (000001C68E5EA348)
-[LOG] SoundI::release                          :     ClothSf4 (000001C68B0F9258)
-[LOG] SoundI::release                          :  (000001C762477178)
-[LOG] SoundI::release                          :     ClothSf1 (000001C68B0F8BD8)
-[LOG] SoundI::release                          :  (000001C7624778A8)
-[LOG] SoundI::release                          :     MetalLeash2 (000001C68B0F86F8)
-[LOG] SoundI::release                          :  (000001C68E5EA798)
-[LOG] SoundI::release                          :     MetalLeash3 (000001C68B0F79F8)
-[LOG] SoundI::release                          :  (000001C7624772E8)
-[LOG] SoundI::release                          :     MetalLeash4 (000001C68B0F7ED8)
-[LOG] SoundI::release                          :  (000001C68E5EA4B8)
-[LOG] SoundI::release                          :     MetalLeash1 (000001C68B0F8D78)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 

@@ -15,6 +15,7 @@ TagManager:
   - PauseUI
   - GameplayUI
   - Interact
+  - Weight
   layers:
   - Default
   - TransparentFX

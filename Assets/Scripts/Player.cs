@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class Player : MonoBehaviour
 {
@@ -47,7 +48,11 @@ public class Player : MonoBehaviour
     public GameObject spawn2;
 
     [Header("FMod")]
-    FMOD.Studio.EventInstance FootSteps;
+    [SerializeField]
+    FMODUnity.StudioEventEmitter emitter;
+    [SerializeField]
+    [FMODUnity.ParamRef]
+    string surfacesParameter;
 
     [Header("Head Bobbing")]    
 
@@ -94,6 +99,8 @@ public class Player : MonoBehaviour
         initialLauncherPos = rocketLauncherPos.transform.localPosition;
 
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        emitter.SetParameter("Surfaces", 0);
     }
         
     void Update()
