@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -101,6 +102,8 @@ public class Player : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         emitter.SetParameter("Surfaces", 0);
+
+        
     }
         
     void Update()

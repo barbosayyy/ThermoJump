@@ -35,6 +35,10 @@ public class PressurePlate : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        if (!other.CompareTag(weightTag))
+        {
+            return;
+        }
         colliderList.Remove(other);
 
         if (colliderList.Count < minWeightCount && isActivated)

@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
     public bool isInRange;
     public bool isLooking;
     public UnityEvent interactAction;
+    public float waitCounter;
 
     private void Start()
     {
@@ -35,7 +36,16 @@ public class Interactable : MonoBehaviour
     {
         if (isLooking == true)
         {
+            Debug.Log("Interacted");
             interactAction.Invoke();
+            StartCoroutine(Count());
         }
+    }
+
+    IEnumerator Count()
+    {
+        yield return new WaitForSeconds(waitCounter);
+        Debug.Log("Interacted");    
+        interactAction.Invoke();
     }
 }

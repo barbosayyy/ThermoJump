@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleElevator1 : MonoBehaviour
+public class TranslatePlatform : MonoBehaviour
 {
-    public GameObject pressurePlateObj;
-    public PressurePlate pressurePlate;
     public bool isDefault;
     public GameObject start;
     public GameObject end;
@@ -14,9 +12,7 @@ public class PuzzleElevator1 : MonoBehaviour
     private void Start()
     {
         isDefault = true;
-        pressurePlate = pressurePlateObj.GetComponent<PressurePlate>();
-        pressurePlate.OnActivated.AddListener(gameObject.GetComponent<PuzzleElevator1>().Activate);
-        pressurePlate.OnDeactivated.AddListener(gameObject.GetComponent<PuzzleElevator1>().Deactivate);
+        gameObject.transform.position = start.transform.position;
     }
     private void Update()
     {
@@ -30,15 +26,18 @@ public class PuzzleElevator1 : MonoBehaviour
         }
     }
 
-    void Activate()
+    public void Interact()
     {
-        StartCoroutine(Raise());
+        if (isDefault == true)
+        {
+            StartCoroutine(Raise());
+        }
+        else if (isDefault == false)
+        {
+            StartCoroutine(Lower());
+        }
     }
 
-    void Deactivate()
-    {
-        StartCoroutine(Lower());
-    }
     IEnumerator Raise()
     {
         isDefault = false;
