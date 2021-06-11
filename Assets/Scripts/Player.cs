@@ -48,12 +48,10 @@ public class Player : MonoBehaviour
     public GameObject spawn1;
     public GameObject spawn2;
 
-    [Header("FMod")]
-    [SerializeField]
-    FMODUnity.StudioEventEmitter emitter;
-    [SerializeField]
-    [FMODUnity.ParamRef]
-    string surfacesParameter;
+    [Header ("FMOD")]
+
+    FMODUnity.StudioEventEmitter eventEmitter;
+    public float currentSurface;
 
     [Header("Head Bobbing")]    
 
@@ -92,6 +90,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+
+        eventEmitter = gameObject.GetComponent<FMODUnity.StudioEventEmitter>();
         Rb = gameObject.GetComponent<Rigidbody>();
         rocketLauncherPos = GameObject.FindGameObjectWithTag("RocketLauncher");
         accelSpeed = playerSpeed;
@@ -100,10 +100,6 @@ public class Player : MonoBehaviour
         initialLauncherPos = rocketLauncherPos.transform.localPosition;
 
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
-        emitter.SetParameter("Surfaces", 0);
-
-        
     }
         
     void Update()
@@ -149,6 +145,12 @@ public class Player : MonoBehaviour
         {
             HeadBob();
         }
+
+        if (isMoving)
+        {
+            eventEmitter.Play();
+        }
+        
     }
 
     void FixedUpdate()
@@ -342,5 +344,20 @@ public class Player : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.DrawSphere(gndCheck.transform.position, sphereCastRadius);
+    }
+
+    void DetermineSurface()
+    {
+        RaycastHit[] hit;
+
+        hit = Physics.RaycastAll(transform.position, Vector3.down, 10.0f);
+
+        foreach (RaycastHit rayhit in hit)
+        {
+            if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Grass"))
+            {
+                currentSurface = 2;
+            }
+        }
     }
 }

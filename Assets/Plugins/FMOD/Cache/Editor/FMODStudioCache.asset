@@ -23,6 +23,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 12489
+--- !u!114 &-5477704106789554281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-3020674666279840225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,12 +81,13 @@ MonoBehaviour:
   - {fileID: 1240064987995975330}
   EditorEvents:
   - {fileID: 8274338757475184591}
+  - {fileID: 1308739839235027991}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1240064987995975330}
   StringsBanks:
   - {fileID: 556553468201067744}
-  stringsBankWriteTime: 637578393587574061
+  stringsBankWriteTime: 637590226961112370
   cacheVersion: 6
 --- !u!114 &519076546409878429
 MonoBehaviour:
@@ -103,11 +124,11 @@ MonoBehaviour:
   Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637578393587574061
+  lastModified: 637590226961112370
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 796
+    Value: 844
   Exists: 1
 --- !u!114 &1240064987995975330
 MonoBehaviour:
@@ -124,9 +145,52 @@ MonoBehaviour:
   Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637578393587564058
+  lastModified: 637590226961072304
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &1308739839235027991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  guid: 757891e4efef78418a93dbf8dab0f5b6
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 42066
+--- !u!114 &1803001075355492519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
   Exists: 1
 --- !u!114 &3636762709124559438
 MonoBehaviour:
@@ -187,7 +251,7 @@ MonoBehaviour:
   ID:
     data1: 0
     data2: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &7858197422915692802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,10 +293,10 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 6715982805973655413}
+  - {fileID: -5477704106789554281}
   MinDistance: 0
   MaxDistance: 0
-  Length: 1000
+  Length: 0
 --- !u!114 &8695869367042934593
 MonoBehaviour:
   m_ObjectHideFlags: 0
