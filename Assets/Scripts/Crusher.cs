@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Crusher : MonoBehaviour
 {
+    public Transform startFrame;
     public Transform startingPoint;
     public Transform endPoint;
     public float waitTime;
@@ -13,7 +14,7 @@ public class Crusher : MonoBehaviour
 
     private void Start()
     {
-        transform.position = startingPoint.position;
+        transform.position = startFrame.position;
     }
 
     private void Update()

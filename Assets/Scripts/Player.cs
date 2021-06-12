@@ -48,10 +48,12 @@ public class Player : MonoBehaviour
     public GameObject spawn1;
     public GameObject spawn2;
 
-    [Header ("FMOD")]
+    [Header("FMOD")]
 
-    FMODUnity.StudioEventEmitter eventEmitter;
-    public float currentSurface;
+    public FMOD.Studio.EventInstance instance;
+    public float waitBetweenSteps;
+    public bool hasMoved;
+    public int currentSurface;
 
     [Header("Head Bobbing")]    
 
@@ -90,8 +92,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
-        eventEmitter = gameObject.GetComponent<FMODUnity.StudioEventEmitter>();
         Rb = gameObject.GetComponent<Rigidbody>();
         rocketLauncherPos = GameObject.FindGameObjectWithTag("RocketLauncher");
         accelSpeed = playerSpeed;
@@ -100,6 +100,9 @@ public class Player : MonoBehaviour
         initialLauncherPos = rocketLauncherPos.transform.localPosition;
 
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        hasMoved = false;
+
+        instance = FMODUnity.RuntimeManager.CreateInstance("event:/FootSteps");
     }
         
     void Update()
@@ -146,9 +149,14 @@ public class Player : MonoBehaviour
             HeadBob();
         }
 
-        if (isMoving)
+        DetermineSurface();
+
+        if (isMoving && isGrounded)
         {
-            eventEmitter.Play();
+            if (hasMoved == false)
+            {
+                StartCoroutine(PlayFootSteps());
+            }
         }
         
     }
@@ -183,7 +191,7 @@ public class Player : MonoBehaviour
         {
             canMove = true;
         }
-    }*/
+    }*/ 
 
     public void Jump()
     {
@@ -350,7 +358,7 @@ public class Player : MonoBehaviour
     {
         RaycastHit[] hit;
 
-        hit = Physics.RaycastAll(transform.position, Vector3.down, 10.0f);
+        hit = Physics.RaycastAll(transform.position, Vector3.down, 5.0f);
 
         foreach (RaycastHit rayhit in hit)
         {
@@ -358,6 +366,23 @@ public class Player : MonoBehaviour
             {
                 currentSurface = 2;
             }
+            else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Stone"))
+            {
+                currentSurface = 0;
+            }
+            else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Wood"))
+            {
+                currentSurface = 1;
+            }
         }
+    }
+
+    IEnumerator PlayFootSteps()
+    {
+        hasMoved = true;
+        instance.setParameterByName("Surfaces", currentSurface);
+        instance.start();
+        yield return new WaitForSeconds(waitBetweenSteps);
+        yield return hasMoved = false;
     }
 }

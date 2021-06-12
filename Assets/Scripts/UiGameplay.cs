@@ -27,6 +27,7 @@ public class UiGameplay : MonoBehaviour
             pauseUi.SetActive(true);
             Time.timeScale = 0;
             lookScript.canMoveCamera = false;
+            playerScript.instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             playerScript.canMove = false;
             Cursor.lockState = CursorLockMode.None;
             isPaused = true;

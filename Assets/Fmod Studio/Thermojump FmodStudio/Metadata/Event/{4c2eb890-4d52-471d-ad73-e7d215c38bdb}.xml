@@ -195,7 +195,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{07b7ab36-4e4a-4133-a84f-b0cc59fcc60d}">
 		<property name="volume">
-			<value>10</value>
+			<value>-5</value>
 		</property>
 		<property name="name">
 			<value>Footsteps</value>
@@ -278,7 +278,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{37ce87fe-18a9-450c-baae-33b37c89ad07}">
 		<property name="volume">
-			<value>10</value>
+			<value>-5</value>
 		</property>
 		<property name="name">
 			<value>Cloth</value>
@@ -352,7 +352,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{50d12d2a-af3c-4746-8e41-00cd1a3d18e6}">
 		<property name="volume">
-			<value>7</value>
+			<value>-5</value>
 		</property>
 		<property name="name">
 			<value>MetalLeash</value>
@@ -376,6 +376,9 @@
 		</property>
 		<property name="maximumTimeDelay">
 			<value>200</value>
+		</property>
+		<property name="volume">
+			<value>-26</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{fed8a1f5-91f5-457b-8f3c-92eb290ad852}</destination>
@@ -403,6 +406,9 @@
 		<property name="maximumTimeDelay">
 			<value>200</value>
 		</property>
+		<property name="volume">
+			<value>-26</value>
+		</property>
 		<relationship name="sounds">
 			<destination>{98b32b3a-f7f9-48d5-9ece-da169de63f7c}</destination>
 			<destination>{3ef2f847-562a-4586-9fa6-15b6eac77171}</destination>
@@ -429,6 +435,9 @@
 		<property name="maximumTimeDelay">
 			<value>200</value>
 		</property>
+		<property name="volume">
+			<value>-14</value>
+		</property>
 		<relationship name="sounds">
 			<destination>{7d3978f8-6f12-4822-a1fe-e1beae4dd03e}</destination>
 			<destination>{d7d550e7-1e07-4fb4-94c2-f9a698eb19e5}</destination>
@@ -444,7 +453,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{345ceb1d-9ed9-43b4-97cd-8ff96fd7899f}">
 		<property name="volume">
-			<value>-7</value>
+			<value>-5</value>
 		</property>
 		<property name="name">
 			<value>Cracks</value>
