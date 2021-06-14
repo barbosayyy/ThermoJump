@@ -11,9 +11,9 @@ tree("Chase")
 		while 
 				CanSeePlayer
 				sequence
-					repeat
 						ApproachPlayer
-						Shoot
+						repeat
+							  Shoot
 
 tree("Idle")
 	sequence
