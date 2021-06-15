@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class ShootRocket : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class ShootRocket : MonoBehaviour
     public bool canShoot;
     public bool hasWeapon;
     public GameObject rocketLauncher;
+    public Volume m_Volume;
+    private VolumeProfile profile;
 
     public Animator playerAnimator;
     private GameObject rocketPrefab;
@@ -28,6 +32,7 @@ public class ShootRocket : MonoBehaviour
         rocketLauncher.SetActive(false);
         hasWeapon = false;
         canShoot = false;
+        profile = m_Volume.sharedProfile;
         
     }
 
@@ -41,12 +46,6 @@ public class ShootRocket : MonoBehaviour
         if (shootingCooldown <= 0)
         {
             hasShot = false;
-        }
-
-        if (hasWeapon)
-        {
-            rocketLauncher.SetActive(true);
-            canShoot = true;
         }
     }
 
@@ -67,5 +66,31 @@ public class ShootRocket : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void PickUpFunc()
+    {
+        StartCoroutine(PickUpEvent());
+    }
+
+    IEnumerator PickUpEvent()
+    {
+        DepthOfField dph;
+        if (profile.TryGet<DepthOfField>(out dph))
+        {
+            dph.active = true;
+        }
+        rocketLauncher.SetActive(true);
+        Player player = gameObject.GetComponent<Player>();
+        player.canMove = false;
+        player.hasMoved = true;
+        yield return new WaitForSecondsRealtime(4f);
+        player.hasMoved = false;
+        player.canMove = true;
+        if (profile.TryGet<DepthOfField>(out dph))
+        {
+            dph.active = false;
+        }
+        yield return canShoot = true;
     }
 }

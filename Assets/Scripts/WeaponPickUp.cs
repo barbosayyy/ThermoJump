@@ -13,6 +13,7 @@ public class WeaponPickUp : MonoBehaviour
             sRPlayer = col.GetComponent<ShootRocket>();
 
             sRPlayer.hasWeapon = true;
+            sRPlayer.PickUpFunc();
             gameObject.SetActive(false);
         }
     }

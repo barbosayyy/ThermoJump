@@ -7,22 +7,28 @@ public class Guardian : MonoBehaviour
 {
     public GameObject player;
     GameObject startPosObj;
-    public Transform shootPoint;
+    public GameObject projectile;
+    public GameObject pivot;
     public bool canSee;
+    public bool canShoot;
     public float speed;
     public float rCmaxDist;
     public float maxDistance;
     public float distanceFromStart;
+    public float rotationDamping;
+    public float shootTimer;
+    private RaycastHit hit;
 
     private void Start()
     {
+        canShoot = true;
         startPosObj = new GameObject();
         startPosObj.transform.position = gameObject.transform.position;
     }
 
     private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out RaycastHit hit, rCmaxDist) && hit.collider.CompareTag("Player"))
+        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, rCmaxDist) && hit.collider.CompareTag("Player"))
         {
             canSee = true;
         }
@@ -35,6 +41,10 @@ public class Guardian : MonoBehaviour
     private void Update()
     {
         distanceFromStart = Vector3.Distance(gameObject.transform.position, startPosObj.transform.position);
+
+        Vector3 direction = player.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = rotation;
     }
 
     [Task]
@@ -55,6 +65,10 @@ public class Guardian : MonoBehaviour
     void ApproachPlayer()
     {
         transform.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed);
+        {
+            Quaternion rotation = Quaternion.LookRotation(player.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
+        }
         if (distanceFromStart > maxDistance)
         {
             Task.current.Succeed();
@@ -64,7 +78,12 @@ public class Guardian : MonoBehaviour
     [Task]
     void Shoot()
     {
-
+        lookAtPlayer();
+        if (canShoot)
+        {
+            StartCoroutine(ShootProjectile());
+        }
+        Task.current.Succeed();
     }
 
     [Task]
@@ -75,5 +94,21 @@ public class Guardian : MonoBehaviour
         {
             Task.current.Succeed();
         }
+    }
+
+    void lookAtPlayer()
+    {
+        
+    }
+
+    IEnumerator ShootProjectile()
+    {
+        canShoot = false;
+        GameObject projectileTemp;
+        projectileTemp = GameObject.Instantiate(projectile, gameObject.transform.localPosition, Quaternion.identity);
+        projectileTemp.GetComponent<EnemyProjectile>().pivot = pivot;
+        projectileTemp.GetComponent<EnemyProjectile>().enemy = gameObject;
+        yield return new WaitForSeconds(shootTimer);
+        yield return canShoot = true;
     }
 }
