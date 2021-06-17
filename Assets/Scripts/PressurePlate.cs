@@ -44,7 +44,7 @@ public class PressurePlate : MonoBehaviour
         if (colliderList.Count < minWeightCount && isActivated)
         {
             isActivated = false;
-            OnDeactivated.Invoke();
+            OnDeactivated.Invoke(); 
         }
     }
 }

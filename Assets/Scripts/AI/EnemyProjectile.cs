@@ -6,9 +6,10 @@ public class EnemyProjectile : MonoBehaviour
 {
     public GameObject enemy;
     private Vector3 prevPos;
-    public float projectileSpeed;
     public GameObject pivot;
+    public float projectileSpeed;
     private float lifeTimer;
+    public float playerDamage;
 
     private void Start()
     {
@@ -38,7 +39,8 @@ public class EnemyProjectile : MonoBehaviour
             //GameObject.Instantiate(gameObject.transform.localPosition, Quaternion.identity);
             if (hits[i].collider.CompareTag("Player"))
             {
-                //damageplayer
+                hits[i].collider.GetComponent<PlayerStats>().health -= playerDamage;
+
                 Destroy(gameObject);
             }
             else

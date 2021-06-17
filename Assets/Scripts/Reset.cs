@@ -5,11 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class Reset : MonoBehaviour
 {
-    void OnTriggerEnter(Collider col)
+    public Scene currentSceneIndex;
+    public GameObject fadeInCanvas;
+
+    private void Start()
     {
-        if (col.CompareTag("Player"))
+        currentSceneIndex = SceneManager.GetActiveScene();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(0);
+            StartCoroutine(Kill());
         }
+    }
+
+    IEnumerator Kill()
+    {
+        fadeInCanvas.SetActive(true);   
+        SceneManager.LoadScene(currentSceneIndex.buildIndex);
+        yield break;
     }
 }

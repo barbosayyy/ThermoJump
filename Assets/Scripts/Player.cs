@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public bool isGrounded;
     public bool isMoving = false;
     public bool canMove = true;
+    public bool isPickingUpWeapon = false;
     public float jumpTimer = 3f;
     public  bool canJump;
     public float groundDistance = 0.01f;
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
     public float sphereCastRadius =  0.25f;
     public float sphereCastDistance = 0.75f;
 
-    public float hMovement;
+    public float hMovement; 
     public float vMovement;
     public float mAxisX;
     public float mAxisY;
@@ -144,7 +145,7 @@ public class Player : MonoBehaviour
         LimitVerticalVelocity();
         LauncherSway();
         TeleportLocations();
-        if (isGrounded == true && canMove == true)
+        if (isGrounded == true && canMove == true && isPickingUpWeapon == false)
         {
             HeadBob();
         }
@@ -153,7 +154,7 @@ public class Player : MonoBehaviour
 
         if (isMoving && isGrounded)
         {
-            if (hasMoved == false)
+            if (hasMoved == false && isPickingUpWeapon == false)
             {
                 StartCoroutine(PlayFootSteps());
             }
@@ -163,10 +164,13 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {   
-        if (canMove == true)
+        if (isPickingUpWeapon == false)
         {
-            MovementAF();
-            DetectGround();
+            if (canMove == true)
+            {
+                MovementAF();
+                DetectGround();
+            }
         }
     }
 

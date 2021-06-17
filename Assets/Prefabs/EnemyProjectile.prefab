@@ -109,5 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  projectileSpeed: 15
   pivot: {fileID: 0}
+  projectileSpeed: 15
+  playerDamage: 25

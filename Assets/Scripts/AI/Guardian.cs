@@ -18,9 +18,11 @@ public class Guardian : MonoBehaviour
     public float rotationDamping;
     public float shootTimer;
     private RaycastHit hit;
+    public bool deactivated;
 
     private void Start()
     {
+        deactivated = false;
         canShoot = true;
         startPosObj = new GameObject();
         startPosObj.transform.position = gameObject.transform.position;
@@ -28,37 +30,49 @@ public class Guardian : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, rCmaxDist) && hit.collider.CompareTag("Player"))
+        if (!deactivated)
         {
-            canSee = true;
-        }
-        else
-        {
-            canSee = false;
+            if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, rCmaxDist) && hit.collider.CompareTag("Player"))
+            {
+                canSee = true;
+            }
+            else
+            {
+                canSee = false;
+            }
         }
     }
 
     private void Update()
     {
-        distanceFromStart = Vector3.Distance(gameObject.transform.position, startPosObj.transform.position);
+        if (!deactivated)
+        {
+            distanceFromStart = Vector3.Distance(gameObject.transform.position, startPosObj.transform.position);
 
-        Vector3 direction = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = rotation;
+            Vector3 direction = player.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = rotation;
+        }
     }
 
     [Task]
     bool CanSeePlayer()
     {
-        if (canSee == true)
+        if (!deactivated)
         {
-            return true;
+            if (canSee == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
             return false;
         }
-
     }
 
     [Task]
@@ -78,27 +92,27 @@ public class Guardian : MonoBehaviour
     [Task]
     void Shoot()
     {
-        lookAtPlayer();
-        if (canShoot)
+        if (!deactivated)
         {
-            StartCoroutine(ShootProjectile());
+            if (canShoot)
+            {
+                StartCoroutine(ShootProjectile());
+            }
+            Task.current.Succeed();
         }
-        Task.current.Succeed();
     }
 
     [Task]
     void GoToStartPosition()
     {
-        transform.position = Vector3.MoveTowards(gameObject.transform.position, startPosObj.transform.position, speed);
-        if (gameObject.transform.position == startPosObj.transform.position)
+        if (!deactivated)
         {
-            Task.current.Succeed();
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, startPosObj.transform.position, speed);
+            if (gameObject.transform.position == startPosObj.transform.position)
+            {
+                Task.current.Succeed();
+            }
         }
-    }
-
-    void lookAtPlayer()
-    {
-        
     }
 
     IEnumerator ShootProjectile()

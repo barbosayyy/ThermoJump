@@ -13,17 +13,12 @@ public class PlayerRaycast : MonoBehaviour
     public GameObject EInteract;
     public Interactable interactObjScript;
 
-    private void Awake()
-    {
-        EInteract.SetActive(false);
-    }
-
     private void Update()
     {
-        if (interactObjScript == null)
-        {
-            interactObjScript = GameObject.FindGameObjectWithTag("Interact").GetComponent<Interactable>();
-        }
+            if (interactObjScript == null)
+            {
+                interactObjScript = GameObject.FindGameObjectWithTag("Interact").GetComponent<Interactable>();
+            }
     }
 
     void FixedUpdate()

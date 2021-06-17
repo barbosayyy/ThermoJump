@@ -16,6 +16,9 @@ TagManager:
   - GameplayUI
   - Interact
   - Weight
+  - CooldownUI
+  - HealthUI
+  - Guardian
   layers:
   - Default
   - TransparentFX

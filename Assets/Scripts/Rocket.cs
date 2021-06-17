@@ -65,6 +65,11 @@ public class Rocket : MonoBehaviour
             {
                 rigg.AddExplosionForce(power, transform.position, radius, upForce, ForceMode.Impulse);
             }
+
+            if (nearby.CompareTag("Guardian"))
+            {
+                nearby.GetComponent<Guardian>().deactivated = true;
+            }
         }
     }
 }
