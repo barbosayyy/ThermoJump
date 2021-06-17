@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{58046946-706c-4e3b-bff5-577142ce03b9}">
+		<property name="assetPath">
+			<value>WalkBrick1.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.371875</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e5a2c744-17dc-4adc-9e14-5a1face78599}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{1d1c40c3-d2d8-43cc-8f85-d1443da7e0ef}">
+		<property name="assetPath">
+			<value>FallingBricks2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.371875</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e5a2c744-17dc-4adc-9e14-5a1face78599}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{5ce1de13-781b-4b70-a4d9-bee269db345c}">
+		<property name="assetPath">
+			<value>TreasurFound.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e5a2c744-17dc-4adc-9e14-5a1face78599}</destination>
+		</relationship>
+	</object>
+</objects>
