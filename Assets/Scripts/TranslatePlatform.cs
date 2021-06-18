@@ -9,10 +9,15 @@ public class TranslatePlatform : MonoBehaviour
     public GameObject end;
     public float speed;
 
+    public FMOD.Studio.EventInstance instanceStoneSlab;
+
     private void Start()
     {
         isDefault = true;
         gameObject.transform.position = start.transform.position;
+
+        instanceStoneSlab = FMODUnity.RuntimeManager.CreateInstance("event:/StoneSlab");
+        instanceStoneSlab.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(end.transform.position));
     }
     private void Update()
     {
@@ -41,11 +46,15 @@ public class TranslatePlatform : MonoBehaviour
     IEnumerator Raise()
     {
         isDefault = false;
+        instanceStoneSlab.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instanceStoneSlab.start();
         yield return new WaitForSeconds(3);
     }
 
     IEnumerator Lower()
     {
+        instanceStoneSlab.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instanceStoneSlab.start();
         isDefault = true;
         yield return new WaitForSeconds(3);
     }

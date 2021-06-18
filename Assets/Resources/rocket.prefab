@@ -102,6 +102,7 @@ MonoBehaviour:
   power: 35
   radius: 4
   upForce: 0
+  explosionTime: 6
 --- !u!65 &2202478064607176222
 BoxCollider:
   m_ObjectHideFlags: 0

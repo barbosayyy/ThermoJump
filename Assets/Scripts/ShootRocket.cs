@@ -13,9 +13,13 @@ public class ShootRocket : MonoBehaviour
     public bool canShoot;
     public bool hasWeapon;
     public bool isPaused;
+    private bool hasPlayed;
     public GameObject rocketLauncher;
     public Volume m_Volume;
     private VolumeProfile profile;
+
+    public FMOD.Studio.EventInstance instanceMusic;
+    public FMOD.Studio.EventInstance instanceShoot;
 
     public PlayerStats playerStats;
     public Animator playerAnimator;
@@ -35,8 +39,11 @@ public class ShootRocket : MonoBehaviour
         rocketPrefab = Resources.Load<GameObject>("rocket");
         rocketLauncher.SetActive(false);
         hasWeapon = false;
+        hasPlayed = false;
         canShoot = false;
         profile = m_Volume.sharedProfile;
+        instanceMusic = FMODUnity.RuntimeManager.CreateInstance("event:/RocketLauncherFound");
+        instanceShoot = FMODUnity.RuntimeManager.CreateInstance("event:/Shoot");
     }
 
     void Update()
@@ -50,6 +57,11 @@ public class ShootRocket : MonoBehaviour
         {
             hasShot = false;
         }
+
+        if (hasWeapon && hasPlayed == false)
+        {
+            StartCoroutine(PlayMusic());
+        }
     }
 
     public void Shoot()
@@ -62,6 +74,7 @@ public class ShootRocket : MonoBehaviour
                 {
                     if (hasShot == false)
                     {
+                        instanceShoot.start();
                         playerAnimator.SetTrigger("ShootRocket");
                         GameObject.Instantiate(rocketPrefab, pivotpos, Quaternion.identity);
                         Debug.Log("shot rocket");
@@ -97,4 +110,13 @@ public class ShootRocket : MonoBehaviour
         player.isPickingUpWeapon = false;
         yield return canShoot = true;
     }
+
+    IEnumerator PlayMusic()
+    {
+        hasPlayed = true;
+        yield return new WaitForSeconds(5);
+        instanceMusic.start();
+        yield break;
+    }
+
 }

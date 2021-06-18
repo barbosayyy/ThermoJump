@@ -64,7 +64,7 @@
 			<destination>{a7e79a1c-0b96-4022-a9d3-87d88a253a55}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{08d8e961-973d-4072-9445-a5b644b7c56b}</destination>
+			<destination>{9615a9fe-8866-4049-8172-407a437ff061}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d324be29-abc5-4f44-90a1-fd08bb3b78fc}" />
@@ -329,11 +329,8 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{5ae8db33-dad3-47a2-8791-1c31e36e9ec2}">
-		<property name="volume">
-			<value>-7</value>
-		</property>
 		<property name="name">
-			<value>Cracks</value>
+			<value>Cloth</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{18cc9d85-0d9b-4eb8-8b95-7c367c458e0f}</destination>
@@ -435,9 +432,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{5d2f4544-d013-40e9-af38-2e11d64fb5c6}">
-		<property name="volume">
-			<value>10</value>
-		</property>
 		<property name="name">
 			<value>MetalLeash</value>
 		</property>
@@ -553,11 +547,8 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{a547b5e1-aeb8-4e4f-9309-6c5684d9a3b3}">
-		<property name="volume">
-			<value>10</value>
-		</property>
 		<property name="name">
-			<value>Cloth</value>
+			<value>Cracks</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{a3355713-cc92-480c-ac48-65a92c973a90}</destination>

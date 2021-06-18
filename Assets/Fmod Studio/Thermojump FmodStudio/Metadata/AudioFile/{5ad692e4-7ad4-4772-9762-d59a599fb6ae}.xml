@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{5ad692e4-7ad4-4772-9762-d59a599fb6ae}">
+		<property name="assetPath">
+			<value>ForestFade.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>133</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e5a2c744-17dc-4adc-9e14-5a1face78599}</destination>
+		</relationship>
+	</object>
+</objects>

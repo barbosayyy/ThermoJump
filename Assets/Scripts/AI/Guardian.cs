@@ -79,10 +79,8 @@ public class Guardian : MonoBehaviour
     void ApproachPlayer()
     {
         transform.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed);
-        {
             Quaternion rotation = Quaternion.LookRotation(player.transform.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
-        }
         if (distanceFromStart > maxDistance)
         {
             Task.current.Succeed();

@@ -67,7 +67,7 @@
 			<destination>{29804d5c-bbc7-4d4a-96ad-a9d59782cf5d}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{08d8e961-973d-4072-9445-a5b644b7c56b}</destination>
+			<destination>{9615a9fe-8866-4049-8172-407a437ff061}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d7dbc25a-ac33-4c79-877c-7bf1e464b3c6}" />
@@ -237,9 +237,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{07b7ab36-4e4a-4133-a84f-b0cc59fcc60d}">
-		<property name="volume">
-			<value>10</value>
-		</property>
 		<property name="name">
 			<value>Footsteps</value>
 		</property>
@@ -343,9 +340,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{37ce87fe-18a9-450c-baae-33b37c89ad07}">
-		<property name="volume">
-			<value>10</value>
-		</property>
 		<property name="name">
 			<value>Cloth</value>
 		</property>
@@ -437,9 +431,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{50d12d2a-af3c-4746-8e41-00cd1a3d18e6}">
-		<property name="volume">
-			<value>7</value>
-		</property>
 		<property name="name">
 			<value>MetalLeash</value>
 		</property>

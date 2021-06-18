@@ -1,5 +1,111 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8928405417191598653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fire
+  m_EditorClassIdentifier: 
+  Path: event:/Fire
+  guid: ae8724dc8e62d9499ef73672686f6d3b
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 32500
+--- !u!114 &-8492364707885877692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-8479708051569365657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-8273213575574448545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GunMovement
+  m_EditorClassIdentifier: 
+  Path: event:/GunMovement
+  guid: 31ff3f38e9f36f4ba27c57240c3306b7
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5259
+--- !u!114 &-8007615294122176837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-7888955227373127595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,6 +126,46 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-7787706757682030617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-7266791754945580166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-7093586932608783885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +206,109 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-7023917357363638049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StoneCollumn
+  m_EditorClassIdentifier: 
+  Path: event:/StoneCollumn
+  guid: a02780ecabf8c64bb2d990422dc66875
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6862
+--- !u!114 &-6698817561698358007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-6533181507869419818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-6445055325719752505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-6428427718853013964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-6422273663108472578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +332,46 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 12489
+--- !u!114 &-6299830585124557860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-6181960969526721631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-5477704106789554281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +387,126 @@ MonoBehaviour:
   Name: Surfaces
   Min: 0
   Max: 2
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-4973328036992364021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-4964489889321707030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-4607701304424609310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-4417724347696217574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-4368661799094818917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-3997906257319673104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
   Default: 0
   ID:
     data1: 0
@@ -123,6 +532,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-3141237739149484764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-3020674666279840225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +573,173 @@ MonoBehaviour:
   - Name: Desktop
     Value: 95648
   Exists: 1
+--- !u!114 &-2790332165212343957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-2240289111741123894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-1430127003448082926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-1326613707055402522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FallingSounds
+  m_EditorClassIdentifier: 
+  Path: event:/FallingSounds
+  guid: e4c8ffe6a5fcaf459c4a53ee2e0b33e7
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -746728335170156093}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1371
+--- !u!114 &-939660384799326844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Explosion
+  m_EditorClassIdentifier: 
+  Path: event:/Explosion
+  guid: afc225c63f0b074d85dbfd68a366220e
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1480
+--- !u!114 &-898357402146241439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-817828042922344423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-746728335170156093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-317762366160696169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +760,49 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-195856538995912945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-104979348694820151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Travel
+  m_EditorClassIdentifier: 
+  Path: event:/Travel
+  guid: 29bd4b27067f084ca9c16beb5ed8cd0f
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10400
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,13 +821,69 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 8274338757475184591}
   - {fileID: 1308739839235027991}
+  - {fileID: 1011685409021918429}
+  - {fileID: 7454654367389254700}
+  - {fileID: -104979348694820151}
+  - {fileID: -8273213575574448545}
+  - {fileID: 5601937116763258678}
+  - {fileID: -7023917357363638049}
+  - {fileID: 3156856632224875539}
+  - {fileID: 3976908519763707166}
+  - {fileID: -8928405417191598653}
+  - {fileID: -939660384799326844}
+  - {fileID: 2574874945857148108}
+  - {fileID: 6275978961137802965}
+  - {fileID: 1739548690100755695}
+  - {fileID: -1326613707055402522}
+  - {fileID: 6347688395511315825}
+  - {fileID: 3494858658420777503}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1240064987995975330}
   StringsBanks:
   - {fileID: 556553468201067744}
-  stringsBankWriteTime: 637590555691309429
+  stringsBankWriteTime: 637595767029241905
   cacheVersion: 6
+--- !u!114 &297861331503556650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &513096048166404487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &519076546409878429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +904,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &535034859647069440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &556553468201067744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,12 +939,75 @@ MonoBehaviour:
   Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637590555691309429
+  lastModified: 637595767029241905
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 844
+    Value: 1674
   Exists: 1
+--- !u!114 &941693247738295527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &1011685409021918429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StoneSlab
+  m_EditorClassIdentifier: 
+  Path: event:/StoneSlab
+  guid: bd88e07cc0341040b04b2d20fe0a183f
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1500
+--- !u!114 &1023446572451354779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &1240064987995975330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +1023,7 @@ MonoBehaviour:
   Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637590555691289422
+  lastModified: 637595767029211896
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -271,7 +1049,30 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 42066
+  Length: 48050
+--- !u!114 &1739548690100755695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerInWater
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerInWater
+  guid: cb1b7007b67bc1459b5b8422b2f6fab9
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 900
 --- !u!114 &1803001075355492519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +1093,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &1820900827315572977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &2217175826987014331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +1129,115 @@ MonoBehaviour:
   Min: 0
   Max: 2
   Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &2574874945857148108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Button
+  m_EditorClassIdentifier: 
+  Path: event:/Button
+  guid: c126e833bb1cb74b8e24af76179041fd
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 500
+--- !u!114 &2755202274223046771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &3156856632224875539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Shoot
+  m_EditorClassIdentifier: 
+  Path: event:/Shoot
+  guid: 64908c3336476a42a3e5397a594c3a16
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
+--- !u!114 &3494858658420777503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/FilterMusic
+  m_EditorClassIdentifier: 
+  Path: snapshot:/FilterMusic
+  guid: 41e8be05ae02cc468fac8f4daa2c3826
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &3576392655476961967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
   ID:
     data1: 0
     data2: 0
@@ -333,6 +1263,129 @@ MonoBehaviour:
   - Name: Desktop
     Value: 742
   Exists: 1
+--- !u!114 &3666869526203611253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &3976908519763707166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Water
+  m_EditorClassIdentifier: 
+  Path: event:/Water
+  guid: 9cadf1049965614185c0e04079b33314
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 153090
+--- !u!114 &4001659297192826820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &4264693640039363229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &4409397145860890881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &4614086136596416390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &4632715435604275160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +1406,149 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &4802920683946055518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &4817192218814535816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &5299186653647338624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &5389594268798041011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &5431226035495696867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &5499293313775963270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &5601937116763258678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StoneElevator
+  m_EditorClassIdentifier: 
+  Path: event:/StoneElevator
+  guid: ce9f0f5a274ff142b90e249fd95aa089
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3952
 --- !u!114 &5739367228089834751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +1567,26 @@ MonoBehaviour:
   lastModified: 637572054430295020
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &5863955236881378835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
   Exists: 1
 --- !u!114 &6167173127370978213
 MonoBehaviour:
@@ -392,6 +1608,72 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &6275978961137802965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Nature
+  m_EditorClassIdentifier: 
+  Path: event:/Nature
+  guid: c1d5d3353fd4e94bbfba2c9be5b4f4d8
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 133000
+--- !u!114 &6347688395511315825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RocketLauncherFound
+  m_EditorClassIdentifier: 
+  Path: event:/RocketLauncherFound
+  guid: f26bdb1382b8384cad6ebd9d3d3ad287
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4000
+--- !u!114 &6690768001808115942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &6715982805973655413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +1689,26 @@ MonoBehaviour:
   Name: Surfaces
   Min: 0
   Max: 2
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &7045374736712075576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
   Default: 0
   ID:
     data1: 0
@@ -432,6 +1734,49 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &7327631850353497170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &7454654367389254700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TreasureFound
+  m_EditorClassIdentifier: 
+  Path: event:/TreasureFound
+  guid: 194c07350b85024f8d3c2cc95422c713
+  Banks:
+  - {fileID: 1240064987995975330}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1500
 --- !u!114 &7858197422915692802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,14 +1814,54 @@ MonoBehaviour:
   guid: 90b82e4c524d1d47ad73e7d215c38bdb
   Banks:
   - {fileID: 1240064987995975330}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 9082739921293263046}
+  - {fileID: -7266791754945580166}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &8352448440817536861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &8534695681387522667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &8695869367042934593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,4 +1904,4 @@ MonoBehaviour:
   ID:
     data1: 0
     data2: 0
-  Exists: 1
+  Exists: 0

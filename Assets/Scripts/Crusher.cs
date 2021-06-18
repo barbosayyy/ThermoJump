@@ -12,9 +12,15 @@ public class Crusher : MonoBehaviour
     public bool canMove = true;
     public float moveSpeed = 1;
 
+    public FMOD.Studio.EventInstance instanceCollumn;
+
+
     private void Start()
     {
         transform.position = startFrame.position;
+
+        instanceCollumn = FMODUnity.RuntimeManager.CreateInstance("event:/StoneCollumn");
+        instanceCollumn.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(endPoint.transform.position));
     }
 
     private void Update()
@@ -41,8 +47,11 @@ public class Crusher : MonoBehaviour
 
     IEnumerator Switch()
     {
+        
         canMove = false;
         yield return new WaitForSeconds(waitTime);
+        instanceCollumn.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instanceCollumn.start();
         canMove = true;
         moveUp = !moveUp;
     }

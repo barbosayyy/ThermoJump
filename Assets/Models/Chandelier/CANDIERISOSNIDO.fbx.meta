@@ -3,7 +3,17 @@ guid: 87d7c25ffa92de04cbe493054bb92cd6
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CANDELABRO
+    second: {fileID: 2100000, guid: b803dfec7a15ecf44971037869f12865, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.029
+    second: {fileID: 2100000, guid: 37356123da1b2c14e9954e769718d490, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

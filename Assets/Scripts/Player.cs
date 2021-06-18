@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     public GameObject rotationRight;
     public GameObject rotationLeft;
     public GameObject rotationNone;
-    //Launcher Sway
+
     [Header("Weapon Sway")]
     public float swayAmount = 0.02f;
     public float maxSwayAmount = 0.06f;
@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
     [Header("FMOD")]
 
     public FMOD.Studio.EventInstance instance;
+    public FMOD.Studio.EventInstance instanceForestSound;
+    public FMOD.Studio.EventInstance instanceFallSounds;
     public float waitBetweenSteps;
     public bool hasMoved;
     public int currentSurface;
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
     public float bobbingAmount;
     public float midpoint;
 
-    //Other privates
+    //OTHER
 
     private InputMaster inputMaster;
 
@@ -104,11 +106,14 @@ public class Player : MonoBehaviour
         hasMoved = false;
 
         instance = FMODUnity.RuntimeManager.CreateInstance("event:/FootSteps");
+        instanceForestSound = FMODUnity.RuntimeManager.CreateInstance("event:/Nature");
+        instanceFallSounds = FMODUnity.RuntimeManager.CreateInstance("event:/FallingSounds");
+
+        instanceForestSound.start();
     }
         
     void Update()
     {
-        // Read Input 
         hMovement = inputMaster.PlayerInput.Sideways.ReadValue<float>();
         vMovement = inputMaster.PlayerInput.Forward.ReadValue<float>();
         mAxisX = Input.GetAxis("Mouse X");
@@ -162,6 +167,17 @@ public class Player : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        //NEED TO FIX SOUNDS
+
+        //if (Rb.velocity.y < -1 && isGrounded)
+        //{
+        //    instanceFallSounds.setParameterByName("Surfaces", currentSurface);
+        //    instanceFallSounds.start();
+        //}
+    }
+
     void FixedUpdate()
     {   
         if (isPickingUpWeapon == false)
@@ -180,22 +196,6 @@ public class Player : MonoBehaviour
         //Gizmos.DrawWireCube(gameObject.transform.position + transform.forward * hit.distance, transform.localScale);
         //Gizmos.DrawCube(gndCheck.transform.position, new Vector3(0.4f, 0.4f, 0.4f));
     }
-
-    /*void OnCollisionStay(Collision collision)
-    {
-        if (collision.collider != null && isGrounded == false)
-        {
-            canMove = false;
-        }
-        else
-        {
-            canMove = true;
-        }
-        if (isGrounded == true)
-        {
-            canMove = true;
-        }
-    }*/ 
 
     public void Jump()
     {
@@ -243,8 +243,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Velocity Limiter
-
     void LimitVerticalVelocity()
     {
         if (Rb.velocity.y > maxVerticalSpeed)
@@ -265,21 +263,6 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
         }
-
-        /*
-
-        if (Physics.Raycast(gndCheck.transform.position, -gndCheck.transform.up, out hit, Mathf.Infinity))
-        {
-            if (hit.distance < groundDistance)
-            {
-                isGrounded = true;
-            }
-            else
-            {
-                isGrounded = false;
-            }
-        }
-        */
         if (canJump == false)
         {
             isGrounded = false;
@@ -378,6 +361,10 @@ public class Player : MonoBehaviour
             {
                 currentSurface = 1;
             }
+            else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Brick"))
+            {
+                currentSurface = 3;
+            }
         }
     }
 
@@ -389,4 +376,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(waitBetweenSteps);
         yield return hasMoved = false;
     }
+
+
 }

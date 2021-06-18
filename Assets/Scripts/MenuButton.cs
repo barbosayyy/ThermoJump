@@ -12,8 +12,17 @@ public class MenuButton : MonoBehaviour
     public GameObject mainMenu;
     public GameObject creditsMenu;
 
+    public FMOD.Studio.EventInstance instanceButton;
+
+    private void Start()
+    {
+        instanceButton = FMODUnity.RuntimeManager.CreateInstance("event:/Button");
+    }
+
     public void MouseEnter()
     {
+        instanceButton.start();
+
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
@@ -35,7 +44,6 @@ public class MenuButton : MonoBehaviour
     }
 
     Coroutine coroutine;
-
 
     public void StartGame()
     {

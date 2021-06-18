@@ -18,6 +18,11 @@ public class Rocket : MonoBehaviour
     private GameObject explosionFx;
     private GameObject player;
 
+    public float explosionTime;
+
+    public FMOD.Studio.EventInstance instanceTravel;
+    public FMOD.Studio.EventInstance instanceExplosion;
+
     void Start()
     {
         explosionFx = Resources.Load<GameObject>("Explosion");
@@ -34,7 +39,14 @@ public class Rocket : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), player.GetComponent<Collider>());  
+        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), player.GetComponent<Collider>());
+
+        instanceTravel = FMODUnity.RuntimeManager.CreateInstance("event:/Travel");
+        instanceExplosion = FMODUnity.RuntimeManager.CreateInstance("event:/Explosion");
+
+        
+        instanceTravel.start();
+
     }
 
     void Update()
@@ -48,9 +60,13 @@ public class Rocket : MonoBehaviour
             Debug.Log(hits[i].collider.gameObject.name);
             KnockBack();
             GameObject.Instantiate(explosionFx, gameObject.transform.localPosition, Quaternion.identity);
+            instanceTravel.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            instanceExplosion.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position));
+            instanceExplosion.start();
             Destroy(gameObject);
+            
         }
-
+        instanceTravel.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position));
         Debug.DrawLine(transform.position, prevPos);
     }
 

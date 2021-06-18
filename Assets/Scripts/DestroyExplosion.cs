@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class DestroyExplosion : MonoBehaviour
 {
-    private float vfxDuration;
+    public float explosionTime;
     void Start()
     {
-        vfxDuration = gameObject.GetComponent<ParticleSystem>().main.duration;
-        Destroy(gameObject, vfxDuration);
+        StartCoroutine(WaitExplosionTime());
     }
 
-    void Update()
+    IEnumerator WaitExplosionTime()
     {
-        
+        yield return new WaitForSeconds(explosionTime);
+        Destroy(gameObject);
+        yield break;
     }
 }

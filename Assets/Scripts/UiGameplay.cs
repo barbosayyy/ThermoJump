@@ -19,9 +19,15 @@ public class UiGameplay : MonoBehaviour
     public GameObject fadeInCanvas;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
+    FMOD.Studio.Bus master;
+
+    //[SerializeField] [Range(-80f, 10f)]
+    //private float masterVolume;
+
     Resolution[] resolutions;
 
     public Slider sensitivitySlider;
+    public Slider volumeSlider;
 
     void Start()
     {
@@ -54,6 +60,11 @@ public class UiGameplay : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
+
+        volumeSlider.minValue = 0;
+        volumeSlider.maxValue = 1;
     }
 
     public void ShowPause()
@@ -103,6 +114,11 @@ public class UiGameplay : MonoBehaviour
         lookScript.mouseSensitivity = sensitivitySlider.value;
     }
 
+    public void HandleVolume()
+    {
+        master.setVolume(volumeSlider.value);
+    }
+
     public void ShowOptionsMain()
     {
         pauseMain.SetActive(false);
@@ -147,4 +163,10 @@ public class UiGameplay : MonoBehaviour
         SceneManager.LoadScene(1);
         yield break;
     }
+
+    //private float DecibelToLinear(float db)
+    //{
+    //    float linear = Mathf.Pow(10.0f, db / 20f);
+    //    return linear;
+    //}
 }
