@@ -166,6 +166,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{0416d4cf-ae82-4ab0-9c6c-1771e64db8ea}">
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{bd686ec0-dc44-4007-b9a7-8f9900826db4}</destination>
 		</relationship>
@@ -547,7 +550,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{345ceb1d-9ed9-43b4-97cd-8ff96fd7899f}">
 		<property name="volume">
-			<value>-7</value>
+			<value>-25</value>
 		</property>
 		<property name="name">
 			<value>Cracks</value>

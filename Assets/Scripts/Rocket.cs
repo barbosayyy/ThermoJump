@@ -13,6 +13,7 @@ public class Rocket : MonoBehaviour
     public int power = 10;
     public int radius = 5;
     public float upForce = 1.0f;
+    public float lifeTimer;
 
     private Rigidbody ignoredRb;
     private GameObject explosionFx;
@@ -68,6 +69,18 @@ public class Rocket : MonoBehaviour
         }
         instanceTravel.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position));
         Debug.DrawLine(transform.position, prevPos);
+
+        lifeTimer += Time.deltaTime;
+
+        if (lifeTimer >= 0.9)
+        {
+            KnockBack();
+            GameObject.Instantiate(explosionFx, gameObject.transform.localPosition, Quaternion.identity);
+            instanceTravel.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            instanceExplosion.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position));
+            instanceExplosion.start();
+            Destroy(gameObject);
+        }
     }
 
     void KnockBack()

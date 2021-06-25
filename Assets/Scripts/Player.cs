@@ -291,15 +291,14 @@ public class Player : MonoBehaviour
 
     void TeleportLocations()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            gameObject.transform.position = spawn1.transform.position;
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            gameObject.transform.position = spawn2.transform.position;
-        }
-
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    gameObject.transform.position = spawn1.transform.position;
+        //}
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    gameObject.transform.position = spawn2.transform.position;
+        //}
     }
 
     void HeadBob()
@@ -339,13 +338,14 @@ public class Player : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.DrawSphere(gndCheck.transform.position, sphereCastRadius);
+        Gizmos.DrawRay(gndCheck.transform.position, new Vector3(0,-0.75f,0));
     }
 
     void DetermineSurface()
     {
         RaycastHit[] hit;
 
-        hit = Physics.RaycastAll(transform.position, Vector3.down, 5.0f);
+        hit = Physics.RaycastAll(gndCheck.transform.position, Vector3.down, 0.75f);
 
         foreach (RaycastHit rayhit in hit)
         {

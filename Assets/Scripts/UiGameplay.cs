@@ -153,6 +153,7 @@ public class UiGameplay : MonoBehaviour
     
     public void QuitToMenu()
     {
+        playerScript.instanceForestSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         StartCoroutine(Quit());
     }
 
@@ -160,7 +161,7 @@ public class UiGameplay : MonoBehaviour
     {
         Time.timeScale = 1;
         fadeInCanvas.SetActive(true);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
         yield break;
     }
 

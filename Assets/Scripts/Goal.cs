@@ -57,7 +57,8 @@ public class Goal : MonoBehaviour
                     instanceTreasureFound.start();
                     break;
                 case 3:
-                    SceneManager.LoadScene(1);
+                    Cursor.lockState = CursorLockMode.None;
+                    SceneManager.LoadScene(0);
                     break;
 
             }
