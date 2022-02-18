@@ -291,14 +291,14 @@ public class Player : MonoBehaviour
 
     void TeleportLocations()
     {
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    gameObject.transform.position = spawn1.transform.position;
-        //}
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    gameObject.transform.position = spawn2.transform.position;
-        //}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            gameObject.transform.position = spawn1.transform.position;
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            gameObject.transform.position = spawn2.transform.position;
+        }
     }
 
     void HeadBob()
