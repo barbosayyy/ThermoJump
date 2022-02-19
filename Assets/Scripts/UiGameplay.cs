@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,51 +9,61 @@ using UnityEngine.SceneManagement;
 public class UiGameplay : MonoBehaviour
 {
     public GameObject pauseUi;
-    private GameObject gameplayUi;
-    private Player playerScript;
-    private ShootRocket sR;
-    private MouseLook lookScript;
-    private bool isPaused;
+    private GameObject _gameplayUi;
+    private Player _playerScript;
+    private ShootRocket _sR;
+    private MouseLook _lookScript;
+    private LevelManager _levelManager;
+    private bool _isPaused;
+    private bool _fade;
 
     public GameObject pauseMain;
     public GameObject optionsMain;
     public GameObject bindingsMain;
     public GameObject fadeInCanvas;
+    public TMP_Text horseText;
+    public TMP_Text daggerText;
+    public TMP_Text chaliceText;
+    public TMP_Text horseTextChild;
+    public TMP_Text chaliceTextChild;
+    public TMP_Text daggerTextChild;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
-    FMOD.Studio.Bus master;
+    FMOD.Studio.Bus _master;
 
     //[SerializeField] [Range(-80f, 10f)]
     //private float masterVolume;
 
-    Resolution[] resolutions;
+    private Resolution[] _resolutions;
 
     public Slider sensitivitySlider;
     public Slider volumeSlider;
 
+    private Color _whiteOpaque;
+
     void Start()
     {
-        gameplayUi = GameObject.FindGameObjectWithTag("GameplayUI");
+        _gameplayUi = GameObject.FindGameObjectWithTag("GameplayUI");
         pauseUi = GameObject.FindGameObjectWithTag("PauseUI");
-        sR = gameObject.GetComponent<ShootRocket>();
-        sR.isPaused = false;
-        lookScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MouseLook>();
-        lookScript.mouseSensitivity = sensitivitySlider.value;
-        playerScript = gameObject.GetComponent<Player>();
+        _sR = gameObject.GetComponent<ShootRocket>();
+        _sR.isPaused = false;
+        _lookScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MouseLook>();
+        _lookScript.mouseSensitivity = sensitivitySlider.value;
+        _playerScript = gameObject.GetComponent<Player>();
         pauseUi.SetActive(false);
-        isPaused = false;
+        _isPaused = false;
 
-        resolutions = Screen.resolutions;
+        _resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
-        for(int i = 0; i < resolutions.Length; i++)
+        for(int i = 0; i < _resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate;
+            string option = _resolutions[i].width + " x " + _resolutions[i].height + " @ " + _resolutions[i].refreshRate;
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
@@ -60,37 +72,52 @@ public class UiGameplay : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-
-        master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
+        
+        _master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
 
         volumeSlider.minValue = 0;
         volumeSlider.maxValue = 1;
+        _levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        _levelManager.onScoreChanged.AddListener(ShowScore);
+        _whiteOpaque = new Color(1, 1, 1, 1);
+    }
+
+    private void Update()
+    {
+        if (_fade)
+        {
+            LerpAlpha();
+        }
+        else
+        {
+            
+        }
     }
 
     public void ShowPause()
     {
-        if (isPaused != true)
+        if (_isPaused != true)
         {
-            gameplayUi.SetActive(false);
+            _gameplayUi.SetActive(false);
             pauseUi.SetActive(true);
-            sR.isPaused = true;
+            _sR.isPaused = true;
             Time.timeScale = 0;
-            lookScript.canMoveCamera = false;
-            playerScript.instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            playerScript.canMove = false;
+            _lookScript.canMoveCamera = false;
+            _playerScript.instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            _playerScript.canMove = false;
             Cursor.lockState = CursorLockMode.None;
-            isPaused = true;
+            _isPaused = true;
         }
         else
         {
-            sR.isPaused = false;
-            gameplayUi.SetActive(true);
+            _sR.isPaused = false;
+            _gameplayUi.SetActive(true);
             pauseUi.SetActive(false);
             Time.timeScale = 1;
-            lookScript.canMoveCamera = true;
-            playerScript.canMove = true;
+            _lookScript.canMoveCamera = true;
+            _playerScript.canMove = true;
             Cursor.lockState = CursorLockMode.Locked;
-            isPaused = false;
+            _isPaused = false;
         }
     }
 
@@ -111,12 +138,12 @@ public class UiGameplay : MonoBehaviour
 
     public void HandleSensitivity()
     {
-        lookScript.mouseSensitivity = sensitivitySlider.value;
+        _lookScript.mouseSensitivity = sensitivitySlider.value;
     }
 
     public void HandleVolume()
     {
-        master.setVolume(volumeSlider.value);
+        _master.setVolume(volumeSlider.value);
     }
 
     public void ShowOptionsMain()
@@ -141,20 +168,48 @@ public class UiGameplay : MonoBehaviour
 
     public void Resume()
     {
-        sR.isPaused = false;
-        gameplayUi.SetActive(true);
+        _sR.isPaused = false;
+        _gameplayUi.SetActive(true);
         pauseUi.SetActive(false);
         Time.timeScale = 1;
-        lookScript.canMoveCamera = true;
-        playerScript.canMove = true;
+        _lookScript.canMoveCamera = true;
+        _playerScript.canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
-        isPaused = false;
+        _isPaused = false;
     }
     
     public void QuitToMenu()
     {
-        playerScript.instanceForestSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _playerScript.instanceForestSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         StartCoroutine(Quit());
+    }
+
+    void LerpAlpha()
+    {
+        Debug.Log("lerpfunc called");
+        horseTextChild.color = Color.Lerp(Color.)
+        Mathf.Lerp(chaliceTextChild.color.a, 0, Time.deltaTime * 2);
+        Mathf.Lerp(daggerTextChild.color.a, 0, Time.deltaTime * 2);
+        Mathf.Lerp(horseText.color.a, 0, Time.deltaTime * 2);
+        Mathf.Lerp(chaliceText.color.a, 0, Time.deltaTime * 2);
+        Mathf.Lerp(daggerText.color.a, 0, Time.deltaTime * 2);
+
+        if (horseText.color.a <= 0 && chaliceText.color.a <= 0 && daggerText.color.a <= 0)
+        {
+            _fade = false;
+        }
+    }
+
+    public void ShowScore()
+    {
+        Debug.Log("showscore called");
+        horseText.color = _whiteOpaque;
+        daggerText.color = _whiteOpaque;
+        chaliceText.color = _whiteOpaque;
+        horseTextChild.color =_whiteOpaque;
+        daggerTextChild.color = _whiteOpaque;
+        chaliceTextChild.color = _whiteOpaque;
+        _fade = true;
     }
 
     IEnumerator Quit()

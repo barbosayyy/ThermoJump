@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
     public Transform checkpoint1;
     public Transform checkpoint2;
 
+    public UnityEvent onScoreChanged = new UnityEvent();
+
     // 0 Horse
     // 1 Dagger
     // 2 Chalice

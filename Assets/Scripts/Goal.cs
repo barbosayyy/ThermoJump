@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class Goal : MonoBehaviour
 {
@@ -33,8 +34,8 @@ public class Goal : MonoBehaviour
         {
             transform.Rotate(0, 6.0f * rotationsPerMinute * Time.deltaTime, 0);
         }
-        
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -60,8 +61,9 @@ public class Goal : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                     SceneManager.LoadScene(0);
                     break;
-
             }
+            levelManager.onScoreChanged.Invoke();
+
             gameObject.SetActive(false);
         }
     }
