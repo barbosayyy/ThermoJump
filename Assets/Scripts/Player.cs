@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using UnityEngine.InputSystem;
 
+//! Needs restructuring
+
 public class Player : MonoBehaviour
 {
-    [Header("Movement")]
-    public float playerSpeed;
+    [Header("Movement")] public float playerSpeed;
     public float jumpForce;
     public GameObject gndCheck;
     public bool isGrounded;
@@ -15,14 +17,14 @@ public class Player : MonoBehaviour
     public bool canMove = true;
     public bool isPickingUpWeapon = false;
     public float jumpTimer = 3f;
-    public  bool canJump;
+    public bool canJump;
     public float groundDistance = 0.01f;
     public LayerMask sphereMask;
-    
-    public float sphereCastRadius =  0.25f;
+
+    public float sphereCastRadius = 0.25f;
     public float sphereCastDistance = 0.75f;
 
-    public float hMovement; 
+    public float hMovement;
     public float vMovement;
     public float mAxisX;
     public float mAxisY;
@@ -35,6 +37,9 @@ public class Player : MonoBehaviour
     public GameObject rotationRight;
     public GameObject rotationLeft;
     public GameObject rotationNone;
+    private Vector3 movement;
+    private Vector3 x;
+    private Vector3 z;
 
     [Header("Weapon Sway")]
     public float swayAmount = 0.02f;
@@ -76,6 +81,11 @@ public class Player : MonoBehaviour
 
     private GameObject rocketLauncherPos;
     private Rigidbody Rb;
+    private RaycastHit slopeHit;
+    private float playerHeight = 1.9f;
+    private Vector3 slopeMoveDirection;
+    private Vector3 moveDirection;
+    [SerializeField] private Transform orientation;
 
     void Awake()
     {
@@ -111,6 +121,19 @@ public class Player : MonoBehaviour
 
         instanceForestSound.start();
     }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 1))
+        {
+            if (slopeHit.normal != Vector3.up)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
         
     void Update()
     {
@@ -150,6 +173,7 @@ public class Player : MonoBehaviour
         LimitVerticalVelocity();
         LauncherSway();
         TeleportLocations();
+
         if (isGrounded == true && canMove == true && isPickingUpWeapon == false)
         {
             HeadBob();
@@ -216,11 +240,13 @@ public class Player : MonoBehaviour
 
     void MovementAF()
     {
-        Vector3 x = transform.right * hMovement;
-        Vector3 z = transform.forward * vMovement;
+        x = transform.right * hMovement;
+        z = transform.forward * vMovement;
 
-        Vector3 movement = (x + z).normalized * playerSpeed;
+        movement = (x + z).normalized * playerSpeed;
 
+        moveDirection = orientation.forward * vMovement + orientation.right * hMovement;
+        
         Rb.AddForce(movement);
 
         Vector3 velocity = Rb.velocity;
@@ -241,6 +267,8 @@ public class Player : MonoBehaviour
         {
             playerSpeed = defaultSpeed;
         }
+        OnSlope();
+        slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
     }
 
     void LimitVerticalVelocity()

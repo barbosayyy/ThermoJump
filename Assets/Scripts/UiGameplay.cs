@@ -40,6 +40,8 @@ public class UiGameplay : MonoBehaviour
     public Slider volumeSlider;
 
     private Color _whiteOpaque;
+    private Color _whiteTransparent;
+    private float t;
 
     void Start()
     {
@@ -80,6 +82,7 @@ public class UiGameplay : MonoBehaviour
         _levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         _levelManager.onScoreChanged.AddListener(ShowScore);
         _whiteOpaque = new Color(1, 1, 1, 1);
+        _whiteTransparent = new Color(1, 1, 1, 0);
     }
 
     private void Update()
@@ -186,13 +189,13 @@ public class UiGameplay : MonoBehaviour
 
     void LerpAlpha()
     {
-        Debug.Log("lerpfunc called");
-        horseTextChild.color = Color.Lerp(Color.)
-        Mathf.Lerp(chaliceTextChild.color.a, 0, Time.deltaTime * 2);
-        Mathf.Lerp(daggerTextChild.color.a, 0, Time.deltaTime * 2);
-        Mathf.Lerp(horseText.color.a, 0, Time.deltaTime * 2);
-        Mathf.Lerp(chaliceText.color.a, 0, Time.deltaTime * 2);
-        Mathf.Lerp(daggerText.color.a, 0, Time.deltaTime * 2);
+        t += Time.deltaTime / 3f;
+        horseTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
+        chaliceTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
+        daggerTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
+        horseText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
+        chaliceText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
+        daggerText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
 
         if (horseText.color.a <= 0 && chaliceText.color.a <= 0 && daggerText.color.a <= 0)
         {
@@ -202,14 +205,13 @@ public class UiGameplay : MonoBehaviour
 
     public void ShowScore()
     {
-        Debug.Log("showscore called");
         horseText.color = _whiteOpaque;
         daggerText.color = _whiteOpaque;
         chaliceText.color = _whiteOpaque;
         horseTextChild.color =_whiteOpaque;
         daggerTextChild.color = _whiteOpaque;
         chaliceTextChild.color = _whiteOpaque;
-        _fade = true;
+        StartCoroutine(WaitForFade());
     }
 
     IEnumerator Quit()
@@ -218,6 +220,12 @@ public class UiGameplay : MonoBehaviour
         fadeInCanvas.SetActive(true);
         SceneManager.LoadScene(0);
         yield break;
+    }
+
+    IEnumerator WaitForFade()
+    {
+        yield return new WaitForSeconds(3);
+        yield return _fade = true;
     }
 
     //private float DecibelToLinear(float db)
