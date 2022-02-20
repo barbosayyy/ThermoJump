@@ -18,9 +18,14 @@ public class Checkpoints : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            {
-            
-            if (checkpointId == 0)
+        {
+            CheckpointChanger();
+        }
+    }
+
+    void CheckpointChanger()
+    {
+        if (checkpointId == 0)
             {
                 levelmanager.playerCheckpoint = 1;
             }
@@ -34,9 +39,5 @@ public class Checkpoints : MonoBehaviour
             {
                 levelmanager.playerCheckpoint = 3;
             }
-        }
-        
     }
-
-
 }

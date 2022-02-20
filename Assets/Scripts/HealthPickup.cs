@@ -15,8 +15,8 @@ public class HealthPickup : MonoBehaviour
             if (other.GetComponent<PlayerStats>().health > 100)
             {
                 other.GetComponent<PlayerStats>().health = 100;
-                Destroy(gameObject);
             }
+            Destroy(gameObject);
         }
     }
 

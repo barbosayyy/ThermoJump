@@ -11,9 +11,8 @@ public class Crusher : MonoBehaviour
     public bool moveUp;
     public bool canMove = true;
     public float moveSpeed = 1;
-
     public FMOD.Studio.EventInstance instanceCollumn;
-
+    private Vector3 _moveDirection; 
 
     private void Start()
     {
@@ -30,14 +29,14 @@ public class Crusher : MonoBehaviour
             return;
         }
 
-        Vector3 moveDirection = Vector3.up;
+        _moveDirection = Vector3.up;
 
         if (!moveUp)
         {
-            moveDirection = -moveDirection;
+            _moveDirection = -_moveDirection;
         }
 
-        gameObject.transform.Translate(moveDirection * Time.deltaTime * moveSpeed, Space.Self);
+        gameObject.transform.Translate(_moveDirection * Time.deltaTime * moveSpeed, Space.Self);
         
         if ((!moveUp && transform.position.y <= endPoint.position.y) || (moveUp && transform.position.y >= startingPoint.position.y))
         {

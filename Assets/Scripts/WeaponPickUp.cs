@@ -5,24 +5,27 @@ using UnityEngine;
 public class WeaponPickUp : MonoBehaviour
 {
     public ShootRocket sRPlayer;
-    public FMOD.Studio.EventInstance instance;
+    private FMOD.Studio.EventInstance _instance;
     
-
     private void Awake()
     {
-        instance = FMODUnity.RuntimeManager.CreateInstance("event:/GunMovement");
-        
+        _instance = FMODUnity.RuntimeManager.CreateInstance("event:/GunMovement");
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Player"))
         {
+            PickUp(col);
+        }
+    }
+
+    void PickUp(Collider col)
+    {
             sRPlayer = col.GetComponent<ShootRocket>();
             sRPlayer.hasWeapon = true;
             sRPlayer.PickUpFunc();
             gameObject.SetActive(false);
-            instance.start();
-        }
+            _instance.start();
     }
 }

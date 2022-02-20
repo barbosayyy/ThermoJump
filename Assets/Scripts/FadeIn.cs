@@ -6,14 +6,17 @@ using UnityEngine.Events;
 
 public class FadeIn : MonoBehaviour
 {
-    public Image blackFade;
+    public Image fadeImg;
     public float seconds;
     Coroutine coroutine;
-    public UnityEvent beforeFadeEvent;
+    public UnityEvent fadeEvent;
+
+    private float _t;
+    private float _startvalue;
 
     public void Start()
     {
-        blackFade.canvasRenderer.SetAlpha(0f);
+        fadeImg.canvasRenderer.SetAlpha(0f);
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
@@ -24,18 +27,18 @@ public class FadeIn : MonoBehaviour
 
     IEnumerator fade()
     {
-        float T = 0;
-        float startValue = blackFade.color.a;
-        while (T < seconds)
+        _t = 0;
+        _startvalue = fadeImg.color.a;
+        while (_t < seconds)
         {
-            T += Time.deltaTime;
-            blackFade.canvasRenderer.SetAlpha(Mathf.Lerp(startValue, 1f, T / seconds));
+            _t += Time.deltaTime;
+            fadeImg.canvasRenderer.SetAlpha(Mathf.Lerp(_startvalue, 1f, _t / seconds));
             yield return null;
         }
 
-        if (T >= seconds)
+        if (_t >= seconds)
         {
-            beforeFadeEvent.Invoke();
+            fadeEvent.Invoke();
             gameObject.SetActive(false);
         }
     }

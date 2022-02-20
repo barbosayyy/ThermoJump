@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
+
+// 0 Horse
+// 1 Dagger
+// 2 Chalice
 
 public class Goal : MonoBehaviour
 {
@@ -10,10 +13,6 @@ public class Goal : MonoBehaviour
     public float rotationsPerMinute;
 
     public float treasureId;
-
-    // 0 Horse
-    // 1 Dagger
-    // 2 Chalice
 
     public FMOD.Studio.EventInstance instanceTreasureFound;
 

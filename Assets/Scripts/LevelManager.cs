@@ -29,9 +29,12 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         playerCheckpoint = 0;
-
+        SetScoreText();   
+    }
+    void SetScoreText()
+    {      
         col0.text = collectible0Score + "/" + "3";
         col1.text = collectible1Score + "/" + "3";
         col2.text = collectible2Score + "/" + "3";
-    }
+    }      
 }

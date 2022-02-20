@@ -6,41 +6,32 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class EnvironmentLoader : MonoBehaviour
 {
-    private Light sun;
-    private Volume skyVol;
-    private Fog fog;
-    private GameObject environmentCastle;
-    private GameObject environmentForest;
-    private float currentValue;
+    private Light _sun;
+    private Volume _skyVol;
+    private Fog _fog;
+    private GameObject _environmentCastle;
+    private GameObject _environmentForest;
+    private float _currentValue;
     [SerializeField]
-    float sunEnterValue;
+    private float _sunEnterValue;
     [SerializeField]
-    float fogEnterValue;
+    private float _fogEnterValue;
     [SerializeField]
-    float sunExitValue;
+    private float _sunExitValue;
     [SerializeField]
-    float fogExitValue;
+    private float _fogExitValue;
     void Start()
     {
-        sun = GameObject.FindGameObjectWithTag("Sun").GetComponent<Light>();
-        skyVol = GameObject.FindGameObjectWithTag("SfVolume").GetComponent<Volume>();
+        _sun = GameObject.FindGameObjectWithTag("Sun").GetComponent<Light>();
+        _skyVol = GameObject.FindGameObjectWithTag("SfVolume").GetComponent<Volume>();
         StartCoroutine (LoadEnvironment());
-    }
-
-    void Update()
-    {
-        //currentValue = sun.intensity;
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Player"))
         {
-            sun.intensity = sunEnterValue;
-            skyVol.profile.TryGet<Fog>(out fog);
-            fog.meanFreePath.value = fogEnterValue;
-            environmentForest.SetActive(false);
-            environmentCastle.SetActive(true);
+            EnterCastleLevel();
         }
 
     }
@@ -49,20 +40,34 @@ public class EnvironmentLoader : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            sun.intensity = sunExitValue;
-            skyVol.profile.TryGet<Fog>(out fog);
-            fog.meanFreePath.value = fogExitValue;
-            environmentForest.SetActive(true);
-            environmentCastle.SetActive(false);
+            ExitCastleLevel();
         }
+    }
+
+    void EnterCastleLevel()
+    {
+        _sun.intensity = _sunEnterValue;
+        _skyVol.profile.TryGet<Fog>(out _fog);
+        _fog.meanFreePath.value = _fogEnterValue;
+        _environmentForest.SetActive(false);
+        _environmentCastle.SetActive(true);
+    }
+
+    void ExitCastleLevel()
+    {
+        _sun.intensity = _sunExitValue;
+        _skyVol.profile.TryGet<Fog>(out _fog);
+        _fog.meanFreePath.value = _fogExitValue;
+        _environmentForest.SetActive(true);
+        _environmentCastle.SetActive(false);
     }
 
     IEnumerator LoadEnvironment()
     {
-        environmentCastle = GameObject.FindGameObjectWithTag("EnvironmentCastle");
-        environmentForest = GameObject.FindGameObjectWithTag("EnvironmentForest");
+        _environmentCastle = GameObject.FindGameObjectWithTag("EnvironmentCastle");
+        _environmentForest = GameObject.FindGameObjectWithTag("EnvironmentForest");
         yield return new WaitForSeconds(1f);
-        environmentCastle.SetActive(false);
+        _environmentCastle.SetActive(false);
         yield break;
         
     }

@@ -44,7 +44,7 @@ public class PlayerRaycast : MonoBehaviour
             }
             catch (NullReferenceException exception)
             {
-
+                 
             }
         }
 

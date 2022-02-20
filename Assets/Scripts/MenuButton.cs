@@ -14,6 +14,8 @@ public class MenuButton : MonoBehaviour
 
     public FMOD.Studio.EventInstance instanceButton;
 
+    private float _t;
+
     private void Start()
     {
         instanceButton = FMODUnity.RuntimeManager.CreateInstance("event:/Button");
@@ -33,12 +35,12 @@ public class MenuButton : MonoBehaviour
 
     IEnumerator time()
     {
-        float T = 0;
+        _t = 0;
         Vector3 startTransform = ball.transform.position;
-        while (T < seconds)
+        while (_t < seconds)
         {
-            T += Time.deltaTime;
-            ball.transform.position = Vector3.Slerp(startTransform, pivot.transform.position, T/seconds);
+            _t += Time.deltaTime;
+            ball.transform.position = Vector3.Slerp(startTransform, pivot.transform.position, _t/seconds);
             yield return null;
         }
     }

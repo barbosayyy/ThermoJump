@@ -18,7 +18,12 @@ public class GameOver : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(currentSceneIndex.buildIndex);
+            Reset();
         }
+    }
+
+    void Reset()
+    {
+        SceneManager.LoadScene(currentSceneIndex.buildIndex);
     }
 }
