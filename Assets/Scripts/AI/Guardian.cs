@@ -19,6 +19,7 @@ public class Guardian : MonoBehaviour
     public float shootTimer;
     private RaycastHit hit;
     public bool deactivated;
+    public int hp;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class Guardian : MonoBehaviour
         canShoot = true;
         startPosObj = new GameObject();
         startPosObj.transform.position = gameObject.transform.position;
+        hp = 2;
     }
 
     private void FixedUpdate()
@@ -52,6 +54,11 @@ public class Guardian : MonoBehaviour
             Vector3 direction = player.transform.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = rotation;
+        }
+
+        if (hp <= 0)
+        {
+            deactivated = true;
         }
     }
 

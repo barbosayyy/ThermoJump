@@ -12,7 +12,7 @@ public class Goal : MonoBehaviour
     public LevelManager levelManager;
     public float rotationsPerMinute;
 
-    public float treasureId;
+    public int treasureId;
 
     public FMOD.Studio.EventInstance instanceTreasureFound;
 
@@ -25,13 +25,17 @@ public class Goal : MonoBehaviour
 
     private void Update()
     {
-        if (treasureId == 1 || treasureId == 2)
+        if (treasureId == 2)
         {
             transform.Rotate(0, 0, 6.0f * rotationsPerMinute * Time.deltaTime);
         }
         else if (treasureId == 0)
         {
             transform.Rotate(0, 6.0f * rotationsPerMinute * Time.deltaTime, 0);
+        }
+        else if (treasureId == 1)
+        {
+            transform.Rotate(0, 6.0f, 0 * rotationsPerMinute * Time.deltaTime, 0);
         }
     }
 

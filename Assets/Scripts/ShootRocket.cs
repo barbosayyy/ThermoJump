@@ -8,23 +8,23 @@ public class ShootRocket : MonoBehaviour
 {
     public GameObject pivot;
     public bool hasShot = false;
-    private float cooldownValue;
+    private float _cooldownValue;
 
     public bool canShoot;
     public bool hasWeapon;
     public bool isPaused;
-    private bool hasPlayed;
+    private bool _hasPlayed;
     public GameObject rocketLauncher;
     public Volume m_Volume;
-    private VolumeProfile profile;
+    private VolumeProfile _profile;
 
     public FMOD.Studio.EventInstance instanceMusic;
     public FMOD.Studio.EventInstance instanceShoot;
 
     public PlayerStats playerStats;
     public Animator playerAnimator;
-    private GameObject rocketPrefab;
-    private Vector3 pivotpos;
+    private GameObject _rocketPrefab;
+    private Vector3 _pivotPosition;
 
     void Awake()
     {
@@ -34,14 +34,14 @@ public class ShootRocket : MonoBehaviour
     void Start()
     {
         playerStats = gameObject.GetComponent<PlayerStats>();
-        pivotpos = pivot.transform.position;
-        cooldownValue = playerStats.weaponCooldown;
-        rocketPrefab = Resources.Load<GameObject>("rocket");
+        _pivotPosition = pivot.transform.position;
+        _cooldownValue = playerStats.weaponCooldown;
+        _rocketPrefab = Resources.Load<GameObject>("rocket");
         rocketLauncher.SetActive(false);
         hasWeapon = false;
-        hasPlayed = false;
+        _hasPlayed = false;
         canShoot = false;
-        profile = m_Volume.sharedProfile;
+        _profile = m_Volume.sharedProfile;
         instanceMusic = FMODUnity.RuntimeManager.CreateInstance("event:/RocketLauncherFound");
         instanceShoot = FMODUnity.RuntimeManager.CreateInstance("event:/Shoot");
     }
@@ -53,18 +53,18 @@ public class ShootRocket : MonoBehaviour
             playerStats.weaponCooldown += Time.deltaTime;
         }
         
-        if (playerStats.weaponCooldown >= cooldownValue)
+        if (playerStats.weaponCooldown >= _cooldownValue)
         {
             hasShot = false;
         }
 
-        if (hasWeapon && hasPlayed == false)
+        if (hasWeapon && _hasPlayed == false)
         {
             StartCoroutine(PlayMusic());
         }
     }
 
-    public void Shoot()
+    public void Shoot() //Accessed by Input System
     {
         if (!isPaused)
         {
@@ -76,7 +76,7 @@ public class ShootRocket : MonoBehaviour
                     {
                         instanceShoot.start();
                         playerAnimator.SetTrigger("ShootRocket");
-                        GameObject.Instantiate(rocketPrefab, pivotpos, Quaternion.identity);
+                        GameObject.Instantiate(_rocketPrefab, _pivotPosition, Quaternion.identity);
                         Debug.Log("shot rocket");
                         playerStats.weaponCooldown = 0;
                         hasShot = true;
@@ -95,7 +95,7 @@ public class ShootRocket : MonoBehaviour
     IEnumerator PickUpEvent()
     {
         DepthOfField dph;
-        if (profile.TryGet<DepthOfField>(out dph))
+        if (_profile.TryGet<DepthOfField>(out dph))
         {
             dph.active = true;
         }
@@ -103,7 +103,7 @@ public class ShootRocket : MonoBehaviour
         Player player = gameObject.GetComponent<Player>();
         player.isPickingUpWeapon = true;
         yield return new WaitForSecondsRealtime(4f);
-        if (profile.TryGet<DepthOfField>(out dph))
+        if (_profile.TryGet<DepthOfField>(out dph))
         {
             dph.active = false;
         }
@@ -113,7 +113,7 @@ public class ShootRocket : MonoBehaviour
 
     IEnumerator PlayMusic()
     {
-        hasPlayed = true;
+        _hasPlayed = true;
         yield return new WaitForSeconds(5);
         instanceMusic.start();
         yield break;

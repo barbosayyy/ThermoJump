@@ -472,6 +472,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-4453314145601835901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FallingSounds/FallingSurfaces
+  m_EditorClassIdentifier: 
+  Name: FallingSurfaces
+  Min: 0
+  Max: 3
+  Default: 2
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-4417724347696217574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,7 +733,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 4459531634484182575}
+  - {fileID: -4453314145601835901}
   MinDistance: 0
   MaxDistance: 0
   Length: 1371
@@ -902,7 +922,7 @@ MonoBehaviour:
   - {fileID: 1240064987995975330}
   StringsBanks:
   - {fileID: 556553468201067744}
-  stringsBankWriteTime: 637809028895230609
+  stringsBankWriteTime: 637595979670190860
   cacheVersion: 6
 --- !u!114 &297861331503556650
 MonoBehaviour:
@@ -999,11 +1019,31 @@ MonoBehaviour:
   Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637809028895230609
+  lastModified: 637595979670190860
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 1674
+  Exists: 1
+--- !u!114 &904596321727058114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/Surfaces
+  m_EditorClassIdentifier: 
+  Name: Surfaces
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
   Exists: 1
 --- !u!114 &941693247738295527
 MonoBehaviour:
@@ -1083,7 +1123,7 @@ MonoBehaviour:
   Path: Assets/Fmod Studio/Thermojump FmodStudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637809028895210578
+  lastModified: 637595979670160856
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1898,7 +1938,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -1408332364629274392}
+  - {fileID: 904596321727058114}
   MinDistance: 0
   MaxDistance: 0
   Length: 0

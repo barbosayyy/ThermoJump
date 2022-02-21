@@ -7,7 +7,7 @@ public class TranslateObject : MonoBehaviour
     public bool isDefault;
     public GameObject currentPos;
     public GameObject nextPos;
-    private Vector3 y = new Vector3(0, 3, 0);
+    private Vector3 _y = new Vector3(0, 3, 0);
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class TranslateObject : MonoBehaviour
 
         currentPos.transform.position = gameObject.transform.position;
         nextPos.transform.position = currentPos.transform.position;
-        nextPos.transform.position += y;
+        nextPos.transform.position += _y;
     }
 
     public void Interact()

@@ -28,7 +28,7 @@ public class UiGameplay : MonoBehaviour
     public TMP_Text chaliceTextChild;
     public TMP_Text daggerTextChild;
 
-    public TMPro.TMP_Dropdown resolutionDropdown;
+    public TMP_Dropdown resolutionDropdown;
     FMOD.Studio.Bus _master;
 
     //[SerializeField] [Range(-80f, 10f)]
@@ -41,7 +41,7 @@ public class UiGameplay : MonoBehaviour
 
     private Color _whiteOpaque;
     private Color _whiteTransparent;
-    private float t;
+    private float _t;
 
     void Start()
     {
@@ -189,13 +189,13 @@ public class UiGameplay : MonoBehaviour
 
     void LerpAlpha()
     {
-        t += Time.deltaTime / 3f;
-        horseTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
-        chaliceTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
-        daggerTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
-        horseText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
-        chaliceText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
-        daggerText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, t);
+        _t += Time.deltaTime / 3f;
+        horseTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
+        chaliceTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
+        daggerTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
+        horseText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
+        chaliceText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
+        daggerText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
 
         if (horseText.color.a <= 0 && chaliceText.color.a <= 0 && daggerText.color.a <= 0)
         {

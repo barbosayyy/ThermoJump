@@ -7,17 +7,16 @@ public class Rocket : MonoBehaviour
     public GameObject pivot;
     public int projectileSpeed = 5;
     public Vector3 pivotdirection;
-    private Camera maincam;
-    private Vector3 maincamdirec;
-    private Vector3 prevPos;
+    private Camera _mainCam;
+    private Vector3 _mainCamDir;
+    private Vector3 _prevPos;
     public int power = 10;
     public int radius = 5;
     public float upForce = 1.0f;
     public float lifeTimer;
-
-    private Rigidbody ignoredRb;
-    private GameObject explosionFx;
-    private GameObject player;
+    
+    private GameObject _explosionFx;
+    private GameObject _player;
 
     public float explosionTime;
 
@@ -26,21 +25,20 @@ public class Rocket : MonoBehaviour
 
     void Start()
     {
-        explosionFx = Resources.Load<GameObject>("Explosion");
-        ignoredRb = gameObject.GetComponent<Rigidbody>();
+        _explosionFx = Resources.Load<GameObject>("Explosion");
         pivot = GameObject.FindGameObjectWithTag("ShootPivot");
         gameObject.transform.position = pivot.transform.position;
         pivotdirection = pivot.transform.forward;
         gameObject.transform.forward = pivot.transform.forward;
         gameObject.transform.rotation = Quaternion.LookRotation (pivotdirection);
-        maincam = Camera.main;
-        maincamdirec = maincam.transform.forward;
+        _mainCam = Camera.main;
+        _mainCamDir = _mainCam.transform.forward;
 
-        prevPos = transform.position;
+        _prevPos = transform.position;
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
 
-        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), player.GetComponent<Collider>());
+        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), _player.GetComponent<Collider>());
 
         instanceTravel = FMODUnity.RuntimeManager.CreateInstance("event:/Travel");
         instanceExplosion = FMODUnity.RuntimeManager.CreateInstance("event:/Explosion");
@@ -52,15 +50,15 @@ public class Rocket : MonoBehaviour
 
     void Update()
     {
-        prevPos = transform.position;
+        _prevPos = transform.position;
         gameObject.transform.position += -gameObject.transform.forward * projectileSpeed * Time.deltaTime;
-        RaycastHit[] hits = Physics.RaycastAll(new Ray(prevPos, (transform.position - prevPos).normalized), (transform.position - prevPos).magnitude);
+        RaycastHit[] hits = Physics.RaycastAll(new Ray(_prevPos, (transform.position - _prevPos).normalized), (transform.position - _prevPos).magnitude);
 
         for(int i = 0; i < hits.Length; i++)
         {
             Debug.Log(hits[i].collider.gameObject.name);
             KnockBack();
-            GameObject.Instantiate(explosionFx, gameObject.transform.localPosition, Quaternion.identity);
+            GameObject.Instantiate(_explosionFx, gameObject.transform.localPosition, Quaternion.identity);
             instanceTravel.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             instanceExplosion.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position));
             instanceExplosion.start();
@@ -68,14 +66,14 @@ public class Rocket : MonoBehaviour
             
         }
         instanceTravel.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position));
-        Debug.DrawLine(transform.position, prevPos);
+        Debug.DrawLine(transform.position, _prevPos);
 
         lifeTimer += Time.deltaTime;
 
         if (lifeTimer >= 0.9)
         {
             KnockBack();
-            GameObject.Instantiate(explosionFx, gameObject.transform.localPosition, Quaternion.identity);
+            GameObject.Instantiate(_explosionFx, gameObject.transform.localPosition, Quaternion.identity);
             instanceTravel.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             instanceExplosion.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform.position));
             instanceExplosion.start();
@@ -97,7 +95,7 @@ public class Rocket : MonoBehaviour
 
             if (nearby.CompareTag("Guardian"))
             {
-                nearby.GetComponent<Guardian>().deactivated = true;
+                nearby.GetComponent<Guardian>().hp -= 1;
             }
         }
     }
