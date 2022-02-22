@@ -227,7 +227,7 @@ MonoBehaviour:
     colorBufferFormat: 74
     supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 1
+    supportedLitShaderMode: 2
     planarReflectionResolution:
       m_Values: 400000004000000040000000
       m_SchemaId:
@@ -281,14 +281,14 @@ MonoBehaviour:
       directionalShadowsDepthBits: 32
       shadowFilteringQuality: 1
       punctualLightShadowAtlas:
-        shadowAtlasResolution: 2048
+        shadowAtlasResolution: 1024
         shadowAtlasDepthBits: 32
         useDynamicViewportRescale: 1
       areaLightShadowAtlas:
         shadowAtlasResolution: 2048
         shadowAtlasDepthBits: 32
         useDynamicViewportRescale: 1
-      cachedPunctualLightShadowAtlas: 2048
+      cachedPunctualLightShadowAtlas: 1024
       cachedAreaLightShadowAtlas: 2048
       shadowResolutionDirectional:
         m_Values: 00010000000200000004000000080000
@@ -305,7 +305,7 @@ MonoBehaviour:
       maxDirectionalShadowMapResolution: 1024
       maxPunctualShadowMapResolution: 2048
       maxAreaShadowMapResolution: 1024
-      supportScreenSpaceShadows: 0
+      supportScreenSpaceShadows: 1
       maxScreenSpaceShadowSlots: 4
       screenSpaceShadowBufferFormat: 48
     decalSettings:
@@ -354,7 +354,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000000
+        m_Values: 000100
         m_SchemaId:
           m_Id: 
     maximumLODLevel:
