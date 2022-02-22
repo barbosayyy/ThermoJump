@@ -53,6 +53,11 @@ public class Player : MonoBehaviour
     public bool rotationZ = true;
     public GameObject spawn1;
     public GameObject spawn2;
+    
+    private float _swayInputY;
+    private float _swayInputX;
+    private float _moveSwayX;
+    private float _moveSwayY;
 
     [Header("FMOD")]
 
@@ -65,52 +70,58 @@ public class Player : MonoBehaviour
 
     [Header("Head Bobbing")]    
 
-    private float timer;
+    private float _timer;
+
+    private float _waveSlice;
     public Camera mainCam;
-    private Vector3 camTransform;
+    private Vector3 _camTransform;
     public float bobbingSpeed;
     public float bobbingAmount;
     public float midpoint;
 
     //OTHER
 
-    private InputMaster inputMaster;
+    private InputMaster _inputMaster;
 
-    private Vector3 initialLauncherPos;
-    private Quaternion initialLauncherRotation;
+    private Vector3 _initialLauncherPos;
+    private Quaternion _initialLauncherRotation;
 
-    private GameObject rocketLauncherPos;
-    private Rigidbody Rb;
-    private RaycastHit slopeHit;
+    private GameObject _rocketLauncherPos;
+    private Transform _rocketLauncherTransform;
+    private Rigidbody _rigidBody;
+    private RaycastHit _slopeHit;
     private float playerHeight = 1.9f;
-    private Vector3 slopeMoveDirection;
-    private Vector3 moveDirection;
+    private Vector3 _slopeMoveDirection;
+    private Vector3 _moveDirection;
     [SerializeField] private Transform orientation;
+    private float _translateChange;
+    private float _totalAxes;
 
     void Awake()
     {
-        inputMaster = new InputMaster();
+        _inputMaster = new InputMaster();
         defaultSpeed = playerSpeed;
     }
 
     private void OnEnable()
     {
-        inputMaster.Enable();
+        _inputMaster.Enable();
     }
 
     private void OnDisable()
     {
-        inputMaster.Disable();
+        _inputMaster.Disable();
     }
 
     void Start()
     {
-        Rb = gameObject.GetComponent<Rigidbody>();
-        rocketLauncherPos = GameObject.FindGameObjectWithTag("RocketLauncher");
+        _rigidBody = gameObject.GetComponent<Rigidbody>();
+        _rocketLauncherPos = GameObject.FindGameObjectWithTag("RocketLauncher");
+        _rocketLauncherTransform = _rocketLauncherPos.transform;
         accelSpeed = playerSpeed;
 
-        initialLauncherRotation = rocketLauncherPos.transform.localRotation;
-        initialLauncherPos = rocketLauncherPos.transform.localPosition;
+        _initialLauncherRotation = _rocketLauncherTransform.localRotation;
+        _initialLauncherPos = _rocketLauncherTransform.localPosition;
 
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         hasMoved = false;
@@ -124,9 +135,9 @@ public class Player : MonoBehaviour
 
     private bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 1))
+        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, playerHeight / 2 + 1))
         {
-            if (slopeHit.normal != Vector3.up)
+            if (_slopeHit.normal != Vector3.up)
             {
                 return true;
             }
@@ -137,8 +148,8 @@ public class Player : MonoBehaviour
         
     void Update()
     {
-        hMovement = inputMaster.PlayerInput.Sideways.ReadValue<float>();
-        vMovement = inputMaster.PlayerInput.Forward.ReadValue<float>();
+        hMovement = _inputMaster.PlayerInput.Sideways.ReadValue<float>();
+        vMovement = _inputMaster.PlayerInput.Forward.ReadValue<float>();
         mAxisX = Input.GetAxis("Mouse X");
         mAxisY = Input.GetAxis("Mouse Y");
 
@@ -151,23 +162,23 @@ public class Player : MonoBehaviour
             isMoving = false;
         }
 
-        Transform from = rocketLauncherPos.transform;
+        Transform from = _rocketLauncherTransform;
         Transform to;
         Transform original = rotationNone.transform;
         if (hMovement > 1)
         {
             to = rotationRight.transform;
-            rocketLauncherPos.transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
+            _rocketLauncherTransform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
         }
         if (hMovement < -1)
         {
             to = rotationLeft.transform;
-            rocketLauncherPos.transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
+            _rocketLauncherTransform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
         }
         if (hMovement == 0)
         {
             to = rotationNone.transform;
-            rocketLauncherPos.transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
+            _rocketLauncherTransform.rotation = Quaternion.Lerp(from.rotation, to.rotation, Time.deltaTime * 10);
         }
 
         LimitVerticalVelocity();
@@ -188,7 +199,6 @@ public class Player : MonoBehaviour
                 StartCoroutine(PlayFootSteps());
             }
         }
-        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -208,7 +218,7 @@ public class Player : MonoBehaviour
         {
             if (canMove == true)
             {
-                MovementAF();
+                Movement();
                 DetectGround();
             }
         }
@@ -225,7 +235,7 @@ public class Player : MonoBehaviour
     {
         if (isGrounded == true && canJump == true)
         {
-            Rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            _rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
             canJump = false;
             StartCoroutine(JumpTimer());
@@ -238,18 +248,18 @@ public class Player : MonoBehaviour
         yield return canJump = true;
     }
 
-    void MovementAF()
+    void Movement()
     {
         x = transform.right * hMovement;
         z = transform.forward * vMovement;
 
         movement = (x + z).normalized * playerSpeed;
 
-        moveDirection = orientation.forward * vMovement + orientation.right * hMovement;
+        _moveDirection = orientation.forward * vMovement + orientation.right * hMovement;
         
-        Rb.AddForce(movement);
+        _rigidBody.AddForce(movement);
 
-        Vector3 velocity = Rb.velocity;
+        Vector3 velocity = _rigidBody.velocity;
         float vertVelocity = velocity.y;
 
         velocity.y = 0;
@@ -257,7 +267,7 @@ public class Player : MonoBehaviour
         velocity = Vector3.ClampMagnitude(velocity, maxHorizontalSpeed);
 
         velocity.y = vertVelocity;
-        Rb.velocity = velocity;
+        _rigidBody.velocity = velocity;
 
         if (isGrounded != true)
         {
@@ -268,14 +278,14 @@ public class Player : MonoBehaviour
             playerSpeed = defaultSpeed;
         }
         OnSlope();
-        slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+        _slopeMoveDirection = Vector3.ProjectOnPlane(_moveDirection, _slopeHit.normal);
     }
 
     void LimitVerticalVelocity()
     {
-        if (Rb.velocity.y > maxVerticalSpeed)
+        if (_rigidBody.velocity.y > maxVerticalSpeed)
         {
-            Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxVerticalSpeed);
+            _rigidBody.velocity = Vector3.ClampMagnitude(_rigidBody.velocity, maxVerticalSpeed);
         }
     }
 
@@ -299,22 +309,22 @@ public class Player : MonoBehaviour
 
     void LauncherSway()
     {
-        float swayInputX = -mAxisX;
-        float swayInputY = -mAxisY;
+        _swayInputX = -mAxisX;
+        _swayInputY = -mAxisY;
 
-        float moveSwayX = Mathf.Clamp(swayInputX * swayAmount, -maxSwayAmount, maxSwayAmount);
-        float moveSwayY = Mathf.Clamp(swayInputX * swayAmount, -maxSwayAmount, maxSwayAmount);
+        _moveSwayX = Mathf.Clamp(_swayInputX * swayAmount, -maxSwayAmount, maxSwayAmount);
+        _moveSwayY = Mathf.Clamp(_swayInputX * swayAmount, -maxSwayAmount, maxSwayAmount);
 
-        Vector3 finalSwayPos = new Vector3(moveSwayX, moveSwayY, 0);
+        Vector3 finalSwayPos = new Vector3(_moveSwayX, _moveSwayY, 0);
 
-        rocketLauncherPos.transform.localPosition = Vector3.Lerp(rocketLauncherPos.transform.localPosition, finalSwayPos + initialLauncherPos, Time.deltaTime * smoothSwayAmount);
+        _rocketLauncherTransform.localPosition = Vector3.Lerp(_rocketLauncherTransform.localPosition, finalSwayPos + _initialLauncherPos, Time.deltaTime * smoothSwayAmount);
 
-        float swayTiltY = Mathf.Clamp(swayInputX * swayRotationAmount, -maxSwayRotationAmount, maxSwayRotationAmount);
-        float swayTiltX = Mathf.Clamp(swayInputY * swayRotationAmount, -maxSwayRotationAmount, maxSwayRotationAmount);
+        float swayTiltY = Mathf.Clamp(_swayInputX * swayRotationAmount, -maxSwayRotationAmount, maxSwayRotationAmount);
+        float swayTiltX = Mathf.Clamp(_swayInputY * swayRotationAmount, -maxSwayRotationAmount, maxSwayRotationAmount);
 
         Quaternion finalSwayRotation = Quaternion.Euler(new Vector3(rotationX ? -swayTiltX : 0f, rotationY ? swayTiltY : 0f, rotationZ ? swayTiltY : 0));
 
-        rocketLauncherPos.transform.localRotation = Quaternion.Slerp(rocketLauncherPos.transform.localRotation, finalSwayRotation * initialLauncherRotation, Time.deltaTime * smoothSwayRotation);
+        _rocketLauncherTransform.localRotation = Quaternion.Slerp(_rocketLauncherTransform.localRotation, finalSwayRotation * _initialLauncherRotation, Time.deltaTime * smoothSwayRotation);
     }
 
     void TeleportLocations()
@@ -331,42 +341,43 @@ public class Player : MonoBehaviour
 
     void HeadBob()
     {
-        float waveslice = 0f;
+        _waveSlice = 0f;
         
 
         if(Mathf.Abs(hMovement) == 0 && Mathf.Abs(vMovement) == 0)
         {
-            timer = 0f;
+            _timer = 0f;
         }
         else
         {
-            waveslice = Mathf.Sin(timer);
-            timer = timer + bobbingSpeed;
-            if (timer > Mathf.PI * 2)
+            _waveSlice = Mathf.Sin(_timer);
+            _timer = _timer + bobbingSpeed;
+            if (_timer > Mathf.PI * 2)
             {
-                timer = timer - (Mathf.PI * 2);
+                _timer = _timer - (Mathf.PI * 2);
             }
         }
-        if (waveslice != 0)
+        if (_waveSlice != 0)
         {
-            float translateChange = waveslice * bobbingAmount;
-            float totalAxes = Mathf.Abs(hMovement) + Mathf.Abs(vMovement);
-            totalAxes = Mathf.Clamp(totalAxes, 0f, 1f);
-            translateChange = totalAxes * translateChange;
-            camTransform.y = midpoint + translateChange;
-            mainCam.transform.localPosition = camTransform;
+            _translateChange = _waveSlice * bobbingAmount;
+            _totalAxes = Mathf.Abs(hMovement) + Mathf.Abs(vMovement);
+            _totalAxes = Mathf.Clamp(_totalAxes, 0f, 1f);
+            _translateChange = _totalAxes * _translateChange;
+            _camTransform.y = midpoint + _translateChange;
+            mainCam.transform.localPosition = _camTransform;
         }
         else
         {
-            camTransform.y = midpoint;
-            mainCam.transform.localPosition = camTransform;
+            _camTransform.y = midpoint;
+            mainCam.transform.localPosition = _camTransform;
         }
     }
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(gndCheck.transform.position, sphereCastRadius);
-        Gizmos.DrawRay(gndCheck.transform.position, new Vector3(0,-0.75f,0));
+        Vector3 gndCheckVec = gndCheck.transform.position;
+        Gizmos.DrawSphere(gndCheckVec, sphereCastRadius);
+        Gizmos.DrawRay(gndCheckVec, new Vector3(0,-0.75f,0));
     }
 
     void DetermineSurface()

@@ -210,6 +210,9 @@
 		<property name="start">
 			<value>2</value>
 		</property>
+		<property name="volume">
+			<value>-5.5</value>
+		</property>
 		<relationship name="sounds">
 			<destination>{93d26b82-3cac-45fe-8e59-277ad231c82c}</destination>
 			<destination>{b99852e2-3396-4d34-9c4f-a80d904bab4a}</destination>
@@ -309,6 +312,9 @@
 		<property name="maximumTimeDelay">
 			<value>100</value>
 		</property>
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{9f962f6f-da16-4fea-add7-bb92d4303570}</destination>
 		</relationship>
@@ -405,6 +411,9 @@
 		</property>
 		<property name="maximumTimeDelay">
 			<value>200</value>
+		</property>
+		<property name="volume">
+			<value>-5.5</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{69d92246-da3d-4ada-b4c0-2a22549f9d5b}</destination>
@@ -508,6 +517,9 @@
 		</property>
 		<property name="maximumTimeDelay">
 			<value>200</value>
+		</property>
+		<property name="volume">
+			<value>-5.5</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{7d3978f8-6f12-4822-a1fe-e1beae4dd03e}</destination>

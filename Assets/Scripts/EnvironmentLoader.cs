@@ -13,13 +13,13 @@ public class EnvironmentLoader : MonoBehaviour
     private GameObject _environmentForest;
     private float _currentValue;
     [SerializeField]
-    private float _sunEnterValue;
+    private float sunEnterValue;
     [SerializeField]
-    private float _fogEnterValue;
+    private float fogEnterValue;
     [SerializeField]
-    private float _sunExitValue;
+    private float sunExitValue;
     [SerializeField]
-    private float _fogExitValue;
+    private float fogExitValue;
     void Start()
     {
         _sun = GameObject.FindGameObjectWithTag("Sun").GetComponent<Light>();
@@ -46,18 +46,18 @@ public class EnvironmentLoader : MonoBehaviour
 
     void EnterCastleLevel()
     {
-        _sun.intensity = _sunEnterValue;
+        _sun.intensity = sunEnterValue;
         _skyVol.profile.TryGet<Fog>(out _fog);
-        _fog.meanFreePath.value = _fogEnterValue;
+        _fog.meanFreePath.value = fogEnterValue;
         _environmentForest.SetActive(false);
         _environmentCastle.SetActive(true);
     }
 
     void ExitCastleLevel()
     {
-        _sun.intensity = _sunExitValue;
+        _sun.intensity = sunExitValue;
         _skyVol.profile.TryGet<Fog>(out _fog);
-        _fog.meanFreePath.value = _fogExitValue;
+        _fog.meanFreePath.value = fogExitValue;
         _environmentForest.SetActive(true);
         _environmentCastle.SetActive(false);
     }

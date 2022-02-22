@@ -10,6 +10,7 @@ public class Rocket : MonoBehaviour
     private Camera _mainCam;
     private Vector3 _mainCamDir;
     private Vector3 _prevPos;
+    private Transform _currentPos;
     public int power = 10;
     public int radius = 5;
     public float upForce = 1.0f;
@@ -25,16 +26,20 @@ public class Rocket : MonoBehaviour
 
     void Start()
     {
+        _currentPos = gameObject.GetComponent<Transform>();
         _explosionFx = Resources.Load<GameObject>("Explosion");
         pivot = GameObject.FindGameObjectWithTag("ShootPivot");
-        gameObject.transform.position = pivot.transform.position;
+        
+        _currentPos.position = pivot.transform.position;
         pivotdirection = pivot.transform.forward;
-        gameObject.transform.forward = pivot.transform.forward;
-        gameObject.transform.rotation = Quaternion.LookRotation (pivotdirection);
+        
+        _currentPos.forward = pivot.transform.forward;
+        _currentPos.rotation = Quaternion.LookRotation (pivotdirection);
         _mainCam = Camera.main;
         _mainCamDir = _mainCam.transform.forward;
 
         _prevPos = transform.position;
+        
 
         _player = GameObject.FindGameObjectWithTag("Player");
 
@@ -51,8 +56,8 @@ public class Rocket : MonoBehaviour
     void Update()
     {
         _prevPos = transform.position;
-        gameObject.transform.position += -gameObject.transform.forward * projectileSpeed * Time.deltaTime;
-        RaycastHit[] hits = Physics.RaycastAll(new Ray(_prevPos, (transform.position - _prevPos).normalized), (transform.position - _prevPos).magnitude);
+        _currentPos.position += -_currentPos.forward * projectileSpeed * Time.deltaTime;
+        RaycastHit[] hits = Physics.RaycastAll(new Ray(_prevPos, (_currentPos.position - _prevPos).normalized), (_currentPos.position - _prevPos).magnitude);
 
         for(int i = 0; i < hits.Length; i++)
         {

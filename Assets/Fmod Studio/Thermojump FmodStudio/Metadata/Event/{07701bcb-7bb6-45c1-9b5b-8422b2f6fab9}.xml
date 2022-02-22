@@ -116,6 +116,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{9b0a0112-cd6d-4a11-a251-42f15b9d9d58}">
+		<property name="volume">
+			<value>-2</value>
+		</property>
 		<property name="name">
 			<value>MovingInWater</value>
 		</property>

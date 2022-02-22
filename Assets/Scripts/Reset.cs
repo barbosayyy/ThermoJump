@@ -9,6 +9,7 @@ public class Reset : MonoBehaviour
     public GameObject fadeInCanvas;
     public LevelManager levelmanager;
     public GameObject player;
+    private Guardian _guardian;
 
     private void Start()
     {
@@ -22,6 +23,12 @@ public class Reset : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StartCoroutine(Kill());
+        }
+        else if (other.CompareTag("Guardian"))
+        {
+            _guardian = other.GetComponent<Guardian>();
+            _guardian.deactivated = true;
+            _guardian = null;
         }
     }
 
