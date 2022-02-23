@@ -24,9 +24,9 @@ public class UiGameplay : MonoBehaviour
     public TMP_Text horseText;
     public TMP_Text daggerText;
     public TMP_Text chaliceText;
-    public TMP_Text horseTextChild;
-    public TMP_Text chaliceTextChild;
-    public TMP_Text daggerTextChild;
+    private Image _horseImage;
+    private Image _daggerImage;
+    private Image _chaliceImage;
 
     public TMP_Dropdown resolutionDropdown;
     FMOD.Studio.Bus _master;
@@ -39,10 +39,16 @@ public class UiGameplay : MonoBehaviour
     public Slider sensitivitySlider;
     public Slider volumeSlider;
 
+    private float _t;
     private Color _whiteOpaque;
     private Color _whiteTransparent;
-    private float _t;
-
+    private Color _horseColor;
+    private Color _daggerColor;
+    private Color _chaliceColor;
+    private Color _horseColorTransparent;
+    private Color _daggerColorTransparent;
+    private Color _chaliceColorTransparent;
+    
     void Start()
     {
         _gameplayUi = GameObject.FindGameObjectWithTag("GameplayUI");
@@ -81,8 +87,21 @@ public class UiGameplay : MonoBehaviour
         volumeSlider.maxValue = 1;
         _levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         _levelManager.onScoreChanged.AddListener(ShowScore);
-        _whiteOpaque = new Color(1, 1, 1, 1);
-        _whiteTransparent = new Color(1, 1, 1, 0);
+
+        _horseImage = _levelManager.horseImage;
+        _daggerImage = _levelManager.daggerImage;
+        _chaliceImage = _levelManager.chaliceImage;
+
+        _whiteOpaque = new Color(255/255.0f, 241/255.0f, 189/255.0f, 1);
+        _whiteTransparent = new Color(255/255.0f, 241/255.0f, 189/255.0f, 0);
+        _horseColor = _horseImage.color;
+        _daggerColor = _daggerImage.color;
+        _chaliceColor = _chaliceImage.color;
+        _horseColorTransparent = new Color(_chaliceColor.r,_chaliceColor.g,_chaliceColor.b,0);
+        _daggerColorTransparent = new Color(_chaliceColor.r,_chaliceColor.g,_chaliceColor.b,0);
+        _chaliceColorTransparent = new Color(_chaliceColor.r,_chaliceColor.g,_chaliceColor.b,0);
+
+        HideScore();
     }
 
     private void Update()
@@ -190,9 +209,10 @@ public class UiGameplay : MonoBehaviour
     void LerpAlpha()
     {
         _t += Time.deltaTime / 3f;
-        horseTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
-        chaliceTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
-        daggerTextChild.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
+
+        _horseImage.color = Color.Lerp(_horseColor, _horseColorTransparent, _t);
+        _chaliceImage.color = Color.Lerp(_chaliceColor, _chaliceColorTransparent, _t);
+        _daggerImage.color = Color.Lerp(_daggerColor, _daggerColorTransparent, _t);
         horseText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
         chaliceText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
         daggerText.color = Color.Lerp(_whiteOpaque, _whiteTransparent, _t);
@@ -205,13 +225,23 @@ public class UiGameplay : MonoBehaviour
 
     public void ShowScore()
     {
+        _horseImage.color = _horseColor;
+        _chaliceImage.color = _chaliceColor;
+        _daggerImage.color = _daggerColor;
         horseText.color = _whiteOpaque;
-        daggerText.color = _whiteOpaque;
         chaliceText.color = _whiteOpaque;
-        horseTextChild.color =_whiteOpaque;
-        daggerTextChild.color = _whiteOpaque;
-        chaliceTextChild.color = _whiteOpaque;
+        daggerText.color = _whiteOpaque;
         StartCoroutine(WaitForFade());
+    }
+
+    void HideScore()
+    {
+        _horseImage.color = _horseColorTransparent;
+        _chaliceImage.color = _chaliceColorTransparent;
+        _daggerImage.color = _daggerColorTransparent;
+        horseText.color = _whiteTransparent;
+        chaliceText.color = _whiteTransparent;
+        daggerText.color = _whiteTransparent;
     }
 
     IEnumerator Quit()

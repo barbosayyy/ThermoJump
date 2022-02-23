@@ -36,6 +36,7 @@ public class PlayerStats : MonoBehaviour
         {
             //player.instanceForestSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             health = 100;
+            levelmanager.FadeInCanvas();
             switch (levelmanager.playerCheckpoint)
             {
                 case 0:
@@ -48,6 +49,7 @@ public class PlayerStats : MonoBehaviour
                     playerGO.transform.position = levelmanager.checkpoint1.position;
                     break;
                 case 3:
+                    
                     playerGO.transform.position = levelmanager.checkpoint2.position;
                     break;
             }    

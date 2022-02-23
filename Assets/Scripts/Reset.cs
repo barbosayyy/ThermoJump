@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Reset : MonoBehaviour
 {
     public Scene currentSceneIndex;
-    public GameObject fadeInCanvas;
     public LevelManager levelmanager;
     public GameObject player;
     private Guardian _guardian;
@@ -34,23 +33,23 @@ public class Reset : MonoBehaviour
 
     IEnumerator Kill()
     {
-        fadeInCanvas.SetActive(true);
+        
         switch (levelmanager.playerCheckpoint)
         {
             case 0:
-                fadeInCanvas.SetActive(true);
+                levelmanager.FadeInCanvas();
                 player.transform.position = levelmanager.spawn.position;
                 break;
             case 1:
-                fadeInCanvas.SetActive(true);
+                levelmanager.FadeInCanvas();
                 player.transform.position = levelmanager.checkpoint0.position;
                 break;
             case 2:
-                fadeInCanvas.SetActive(true);
+                levelmanager.FadeInCanvas();
                 player.transform.position = levelmanager.checkpoint1.position;
                 break;
             case 3:
-                fadeInCanvas.SetActive(true);
+                levelmanager.FadeInCanvas();
                 player.transform.position = levelmanager.checkpoint2.position;
                 break;
         }

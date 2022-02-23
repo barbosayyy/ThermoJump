@@ -185,11 +185,6 @@ public class Player : MonoBehaviour
         LauncherSway();
         TeleportLocations();
 
-        if (isGrounded == true && canMove == true && isPickingUpWeapon == false)
-        {
-            HeadBob();
-        }
-
         DetermineSurface();
 
         if (isMoving && isGrounded)
@@ -221,6 +216,11 @@ public class Player : MonoBehaviour
                 Movement();
                 DetectGround();
             }
+        }
+        
+        if (isGrounded == true && canMove == true && isPickingUpWeapon == false)
+        {
+            HeadBob();
         }
     }
 
@@ -329,11 +329,11 @@ public class Player : MonoBehaviour
 
     void TeleportLocations()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && Application.isEditor)
         {
             gameObject.transform.position = spawn1.transform.position;
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) && Application.isEditor)
         {
             gameObject.transform.position = spawn2.transform.position;
         }
