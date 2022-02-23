@@ -9,8 +9,10 @@ public class EnvironmentLoader : MonoBehaviour
     private Light _sun;
     private Volume _skyVol;
     private Fog _fog;
-    private GameObject _environmentCastle;
-    private GameObject _environmentForest;
+    [SerializeField]
+    private GameObject environmentCastle;
+    [SerializeField]
+    private GameObject environmentForest;
     private float _currentValue;
     [SerializeField]
     private float sunEnterValue;
@@ -49,8 +51,8 @@ public class EnvironmentLoader : MonoBehaviour
         _sun.intensity = sunEnterValue;
         _skyVol.profile.TryGet<Fog>(out _fog);
         _fog.meanFreePath.value = fogEnterValue;
-        _environmentForest.SetActive(false);
-        _environmentCastle.SetActive(true);
+        environmentForest.SetActive(false);
+        environmentCastle.SetActive(true);
     }
 
     void ExitCastleLevel()
@@ -58,16 +60,16 @@ public class EnvironmentLoader : MonoBehaviour
         _sun.intensity = sunExitValue;
         _skyVol.profile.TryGet<Fog>(out _fog);
         _fog.meanFreePath.value = fogExitValue;
-        _environmentForest.SetActive(true);
-        _environmentCastle.SetActive(false);
+        environmentForest.SetActive(true);
+        environmentCastle.SetActive(false);
     }
 
     IEnumerator LoadEnvironment()
     {
-        _environmentCastle = GameObject.FindGameObjectWithTag("EnvironmentCastle");
-        _environmentForest = GameObject.FindGameObjectWithTag("EnvironmentForest");
+        environmentCastle = GameObject.FindGameObjectWithTag("EnvironmentCastle");
+        environmentForest = GameObject.FindGameObjectWithTag("EnvironmentForest");
         yield return new WaitForSeconds(1f);
-        _environmentCastle.SetActive(false);
+        environmentCastle.SetActive(false);
         yield break;
         
     }
