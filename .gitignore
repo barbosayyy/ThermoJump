@@ -19,8 +19,6 @@
 [Aa]ssets/Plugins/Editor/JetBrains*
 
 .idea/
-.idea/FPSProject
-.idea/ThermoJump
 
 .vs/
 .vscode/
